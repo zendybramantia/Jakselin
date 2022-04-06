@@ -13,16 +13,7 @@
     <link rel="stylesheet" href="/css/login-style.css">
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
-        <div class="d-flex justify-content-between">
-            <a class="navbar-brand" href="#">
-                <img class="ms-sm-3" src="Images/Jakselin.svg" alt="" height="24">
-            </a>
-        </div>
-    </nav>
-    <!-- <div class="border position-relative" style="z-index: 10;">
-        <img class="position-absolute bottom-0 end-0" src="Group 7.svg" alt="">
-    </div> -->
+    <x-navbar.nav1/>
     <div class="global-container" style="background-image: url(Images/background-img.svg);">
         <div style="height: 100vh;"></div>
         <div class="login-container">
@@ -40,7 +31,7 @@
                       <label class="form-check-label" for="exampleCheck1">Stay signed in</label>
                     </div>
                     <div>
-                        <a href="Register.html">Belum punya akun?</a>
+                        <a href="/register">Belum punya akun?</a>
                     </div>
                     <div class="d-flex justify-content-center mt-3">
                         <button type="submit" class="btn btn-primary">Login</button>
