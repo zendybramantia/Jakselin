@@ -18,6 +18,7 @@ class User extends Model
     ];
 
     protected $hidden =[
-        'password'
+        'password',
+        'is_admin'
     ];
 }

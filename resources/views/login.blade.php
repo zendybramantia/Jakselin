@@ -19,7 +19,8 @@
         <div class="login-container">
             <div style="width: 400px;">
                 <h1 style="text-align: center;">LOGIN</h1>
-                <form action="" class="login-form">
+                @csrf
+                <form action="/login-post" class="login-form">
                     <div class="mb-3">
                       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
                     </div>
