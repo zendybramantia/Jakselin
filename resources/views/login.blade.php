@@ -19,7 +19,7 @@
         <div class="login-container">
             <div style="width: 400px;">
                 <h1 style="text-align: center;">LOGIN</h1>
-                <form>
+                <form action="" class="login-form">
                     <div class="mb-3">
                       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
                     </div>
@@ -36,7 +36,7 @@
                     <div class="d-flex justify-content-center mt-3">
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div>
-                  </form>
+                </form>
             </div>
         </div>
     </div>
