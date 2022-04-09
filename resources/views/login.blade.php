@@ -14,6 +14,8 @@
 </head>
 <body>
     <x-navbar.nav1/>
+    {{-- <div>{{ $Username }}</div>
+    <div>{{ $Password }}</div> --}}
     <div class="global-container" style="background-image: url(Images/background-img.svg);">
         <div style="height: 100vh;"></div>
         <div class="login-container">
@@ -22,10 +24,10 @@
                 @csrf
                 <form action="/login-post" class="login-form">
                     <div class="mb-3">
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
+                      <input type="email" class="form-control" name="email-login" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
                     </div>
                     <div class="mb-3">
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      <input type="password" class="form-control" name="pass-login" id="exampleInputPassword1" placeholder="Password">
                     </div>
                     <div class="mb-3 form-check">
                       <input type="checkbox" class="form-check-input" id="exampleCheck1">
