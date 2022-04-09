@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [SiteController::class, 'index']);
 
 Route::get('/login', function(){
-    return view('login');
+    return view('login', ['status'=>""]);
 });
 
 Route::post('/login-user', [UserController::class, 'login']);
