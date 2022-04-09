@@ -113,7 +113,7 @@ class UserController extends Controller
         if (Auth::attempt(["email" => $request->get('email-login'), "password" => $request->get('pass-login')])) {
             $user = Auth::user();
             // dd($user);
-            return view('profile');
+            return view('home');
         } else {
             // return response("Nama atau password salah", 400);
             // return redirect('/');
