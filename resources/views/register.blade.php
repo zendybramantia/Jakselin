@@ -22,21 +22,22 @@
         <div class="login-container">
             <div style="width: 400px;">
                 <h1 style="text-align: center;">REGISTER</h1>
-                <form>
+                <form action="/register-user" method="POST">
+                  @csrf
                     <div class="mb-3">
-                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama">
+                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama" name="name">
                     </div>
                     <div class="mb-3">
-                      <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Email">
+                      <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Email" name="email">
                     </div>
                     <div class="mb-3">
-                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="No. HP">
+                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="No. HP" name="nohp">
                     </div>
                     <div class="mb-3">
-                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Username">
+                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Username" name="username">
                     </div>
                     <div class="mb-3">
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
                     </div>
                     <div class="mb-3">
                         <a href="/login">Sudah punya akun?</a>

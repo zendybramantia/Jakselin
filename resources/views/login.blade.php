@@ -14,15 +14,14 @@
 </head>
 <body>
     <x-navbar.nav1/>
-    {{-- <div>{{ $Username }}</div>
-    <div>{{ $Password }}</div> --}}
+
     <div class="global-container" style="background-image: url(Images/background-img.svg);">
         <div style="height: 100vh;"></div>
         <div class="login-container">
             <div style="width: 400px;">
                 <h1 style="text-align: center;">LOGIN</h1>
-                @csrf
-                <form action="/login-post" class="login-form">
+                <form action="/login-user" class="login-form" method="POST">
+                    @csrf
                     <div class="mb-3">
                       <input type="email" class="form-control" name="email-login" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
                     </div>
