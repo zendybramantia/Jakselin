@@ -14,6 +14,7 @@
 </head>
 <body>
     <x-navbar.nav2/>
+
     <div>
         <h2 class="judul">UBAH REKOMENDASI KULINER</h2>
     </div>
