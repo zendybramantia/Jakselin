@@ -15,21 +15,21 @@
                 <img src="{{URL('images/profile.jpg')}}" class="rounded-circle" style="height: 279px" alt="">
             </div><br/>
             <div class="row justify-content-center">
-                <h2>Rifki Adi Pramana</h2>
+                <h2>{{ $user->name }}</h2>
             </div>
             <div class="row justify-content-center">
                 <table>
                     <tr>
                         <td style="width: 150px">Username</td>
-                        <td>: rifkiadi</td>
+                        <td>: {{ $user->username }}</td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td>: Rifki@haha</td>
+                        <td>: {{ $user->email }}</td>
                     </tr>
                     <tr>
                         <td>Telepon</td>
-                        <td>: 12123123</td>
+                        <td>: {{ $user->telepon }}</td>
                     </tr>
                 </table>
             </div>

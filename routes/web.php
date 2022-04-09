@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +32,5 @@ Route::get('/register', function(){
 });
 
 Route::post('/login-post', [LoginController::class, 'index']);
+
+Route::get('/profile', [UserProfileController::class, 'index']); 
