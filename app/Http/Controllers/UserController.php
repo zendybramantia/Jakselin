@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -23,9 +25,31 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        try {
+            $this->validate($request, [
+                'name' => "required",
+                'email' => 'required|email',
+                'password' => 'required',
+                'username' => "required",
+                'nohp' => "required"
+            ]);
+
+            User::create([
+                'nama' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'username' => $request->username,
+                'nohp' => $request->nohp
+            ]);
+            return response("Sukses", 200);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response("Nama, Email, atau Password tidak valid", 400);
+        } catch (\Exception $e) {
+            dd($e);
+            return response("Internal Server Error", 500);
+        }
     }
 
     /**
@@ -82,5 +106,15 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function login(Request $request){
+        if (Auth::attempt(["email" => $request->get('email-login'), "password" => $request->get('pass-login')])) {
+            $user = Auth::user();
+            dd($user);
+            return view('profile');
+        } else {
+            return response("Nama atau password salah", 400);
+        }
     }
 }

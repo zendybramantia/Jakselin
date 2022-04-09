@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,8 @@ Route::get('/login', function(){
     return view('login');
 });
 
+Route::post('/login-user', [UserController::class, 'login']);
+
 Route::get('/editKuliner', function() {
     return view('editKuliner');
 });
@@ -30,4 +33,4 @@ Route::get('/register', function(){
     return view('register');
 });
 
-Route::post('/login-post', [LoginController::class, 'index']);
+Route::post('/register-user', [UserController::class, 'create']);
