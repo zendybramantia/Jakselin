@@ -43,7 +43,8 @@ class UserController extends Controller
                 'username' => $request->username,
                 'nohp' => $request->nohp
             ]);
-            return view('login');
+            // return view('login', ['status'=>""]);
+            return redirect('/login');
             // return response("Sukses", 200);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response("Nama, Email, atau Password tidak valid", 400);
@@ -113,11 +114,13 @@ class UserController extends Controller
         if (Auth::attempt(["email" => $request->get('email-login'), "password" => $request->get('pass-login')])) {
             $user = Auth::user();
             // dd($user);
-            return view('home');
+            // return view('home');
+            return redirect('/home');
         } else {
             // return response("Nama atau password salah", 400);
             // return redirect('/');
-            return view('login', ['status'=>"Email atau Password salah"]);
+            // return view('login', ['status'=>"Email atau Password salah"]);
+            return redirect('/login-error');
         }
     }
 }

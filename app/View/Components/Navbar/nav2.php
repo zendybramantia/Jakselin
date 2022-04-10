@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Navbar;
 
 use Illuminate\View\Component;
 
-class navbar.nav2 extends Component
+class nav2 extends Component
 {
     /**
      * Create a new component instance.

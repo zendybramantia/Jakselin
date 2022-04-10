@@ -18,7 +18,6 @@
 
 <body>
     <x-navbar.navnosearch/>
-
     <div class="header-container">
         <img src="/images/Header-logo.png" alt="">
         <p>Rekomendasi Wisata Kuliner Jakarta Selatan</p>

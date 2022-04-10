@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Navbar;
 
 use Illuminate\View\Component;
 
-class navbar.navnosearch extends Component
+class navnosearch extends Component
 {
     /**
      * Create a new component instance.
