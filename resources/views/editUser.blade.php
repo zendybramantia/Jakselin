@@ -18,26 +18,13 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
-        <a class="navbar-brand" href="#">
-            <img class="ms-sm-3" src="/images/Vector.svg" alt="" height="24">
-        </a>
-        <div class="d-flex justify-content-between" style="width: 30%;">
-            <form class="d-flex">
-                <input class="form-control me-2 rounded-pill" type="search" placeholder="Cari Tempat Kuliner..."
-                    aria-label="Search">
-            </form>
-            <a class="navbar-brand" href="#">Home</a>
-            <a href="">
-                <img style="height: 36px;" src="/images/Ellipse 11.svg" alt="">
-            </a>
-        </div>
-    </nav>
+
+    <x-navbar.nav2/>
 
     <div>
         <h2 class="judul">EDIT USER</h2>
     </div>
-    <form action="/edit-profile" method="post">
+    <form action="/edit-profile" method="post" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div>
@@ -58,7 +45,7 @@
             </div>
             <div class="mb-3">
                 <label for="formFile" class="form-label">Foto Profil</label>
-                <input name="foto" class="form-control" type="file" id="formFile">
+                <input name="avatar" class="form-control" type="file" id="formFile" >
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
