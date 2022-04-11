@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\EditUserController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -41,5 +43,12 @@ Route::get('/editKuliner', function() {
 Route::get('/register', function(){
     return view('register');
 });
+
+Route::get('/profile', [UserProfileController::class, 'index']);
+
+Route::get('/edit-profile', [EditUserController::class, 'index']);
+
+Route::put('/edit-profile', [EditUserController::class, 'update']);
+
 Route::post('/register-user', [UserController::class, 'create']);
 // END REGISTER ROUTE

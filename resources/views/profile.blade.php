@@ -12,32 +12,32 @@
     <body>
         <div class="list" style="margin-top:8%">
             <div class="row justify-content-center">
-                <img src="{{URL('images/profile.jpg')}}" class="rounded-circle" style="height: 279px" alt="">
+                <img src="{{ $user->avatar }}" class="rounded-circle" style="height: 279px" alt="">
             </div><br/>
             <div class="row justify-content-center">
-                <h2>Rifki Adi Pramana</h2>
+                <h2>{{ $user->name }}</h2>
             </div>
             <div class="row justify-content-center">
                 <table>
                     <tr>
                         <td style="width: 150px">Username</td>
-                        <td>: rifkiadi</td>
+                        <td>: {{ $user->username }}</td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td>: Rifki@haha</td>
+                        <td>: {{ $user->email }}</td>
                     </tr>
                     <tr>
                         <td>Telepon</td>
-                        <td>: 12123123</td>
+                        <td>: {{ $user->nohp }}</td>
                     </tr>
                 </table>
             </div>
             <div class="row justify-content-center mt-4">
-                <button type="button" class="btn btn-light">Edit Info</button>
+                <a href="/edit-profile" class="btn btn-light">Edit Info</a>
             </div>
             <div class="row justify-content-center mt-3">
-                <button type="button" class="btn btn-light">ELog Out</button>
+                <a href="" class="btn btn-light">Log Out</a>
             </div>
         </div>
 
