@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
                 'email' => $faker->email(),
                 'username' => $faker->userName(),
                 'nohp' => "23232323",
+                'avatar' => "images/profile.jpg",
                 'password' => bcrypt($faker->password())
             ]);
             array_push($userTemporary, $user);

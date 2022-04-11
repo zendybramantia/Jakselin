@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nohp');
             $table->string('username');
             $table->string('password');
+            $table->string('avatar')->default('images/profile.jpg');
             $table->boolean('is_admin')->default(false);
             $table->timestamps();
         });

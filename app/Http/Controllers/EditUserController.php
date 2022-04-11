@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EditUserController extends Controller
 {
@@ -14,7 +15,8 @@ class EditUserController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        return view('editUser', ['user' => $user]);
     }
 
     /**
@@ -67,9 +69,27 @@ class EditUserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
-        //
+        try{
+            $user = Auth::user();
+            $this->validate($request, [
+                'nama' => "required",
+                'username' => "required",
+                'nohp' => "required"
+            ]);
+
+            User::where('id', $user->id)->update([
+                "nama" => $request->nama,
+                "username" => $request->username,
+                "nohp" => $request->nohp
+            ]);
+
+            return redirect('/profile');
+        }catch(\Exception $e){
+            dd($e);
+            return redirect('/profile');
+        }
     }
 
     /**
