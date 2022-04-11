@@ -25,31 +25,8 @@ class KulinerController extends Controller
      */
     public function create(Request $request)
     {
-        // return view('login');
-        try {
-            $this->validate($request, [
-                'nama_tempat' => "required",
-                'alamat' => 'required',
-                'deskripsi' => 'required',
-                'kategori' => "required",
-                'gambar' => "required"
-            ]);
-
-            WisataKuliner::create([
-                'nama_tempat' => $request->nama_tempat,
-                'alamat' => $request->alamat,
-                'deskripsi' => $request->deskripsi,
-                'kategori' => $request->kategori,
-                'gambar' => $request->gambar
-            ]);
-            return response("Sukses", 200);
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            dd($e);
-            return response("form yang diisi tidak valid", 400);
-        } catch (\Exception $e) {
-            dd($e);
-            return response("Internal Server Error", 500);
-        }
+        return view('kuliner/tambah');
+        
     }
 
     /**
@@ -61,6 +38,30 @@ class KulinerController extends Controller
     public function store(Request $request)
     {
         //
+        try {
+            $this->validate($request, [
+                'nama_tempat' => "required",
+                'alamat' => 'required',
+                'deskripsi' => 'required',
+                'id_kategori' => "required",
+                'gambar' => "required"
+            ]);
+
+            WisataKuliner::create([
+                'nama_tempat' => $request->nama_tempat,
+                'alamat' => $request->alamat,
+                'deskripsi' => $request->deskripsi,
+                'id_kategori' => $request->id_kategori,
+                'gambar' => $request->gambar
+            ]);
+            return response("Sukses", 200);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            dd($e);
+            return response("form yang diisi tidak valid", 400);
+        } catch (\Exception $e) {
+            dd($e);
+            return response("Internal Server Error", 500);
+        }
     }
 
     /**

@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('wisata_kuliners', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_tempat');
-            $table->string('alamat');
-            $table->string('deskripsi');
-            $table->string('id_kategori');
-            $table->string('gambar');
+            $table->string('kategori');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wisata_kuliners');
+        Schema::dropIfExists('categories');
     }
 };

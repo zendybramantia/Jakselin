@@ -11,11 +11,16 @@ class WisataKuliner extends Authenticatable
 {
     use HasFactory;
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     protected $fillable = [
         'nama_tempat',
         'alamat',
         'deskripsi',
-        'kategori',
+        'id_kategori',
         'gambar'
     ];
 }

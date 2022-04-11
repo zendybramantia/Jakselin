@@ -34,8 +34,8 @@ Route::post('/register-user', [UserController::class, 'create']);
 
 // Route::get('/tambah-kuliner', [KulinerController::class, 'index']);
 
-Route::get('/tambah-kuliner', function(){
+Route::get('/kuliner', function(){
     return view('tambahKuliner');
 });
 
-Route::post('/tambah-kuliner-new', [KulinerController::class, 'create']);
+Route::post('/kuliner/tambah', [KulinerController::class, 'store']);

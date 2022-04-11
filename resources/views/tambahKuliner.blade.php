@@ -20,7 +20,7 @@
     </div>
     
     <div>
-        <form action="/tambah-kuliner-new" method="POST">
+        <form action="/kuliner/tambah" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nama Tempat</label>
@@ -36,12 +36,12 @@
             </div>
             <div class="mb-3">
                 <label for="inputTipe" class="form-label">Kategori</label>		
-                <select class="form-select" id="inputTipe" aria-label="Default select example" name="kategori">
-                    <option value="Cepat Saji">Cepat Saji</option>
-                    <option value="Cafe">Cafe</option>
-                    <option value="Fine Dining">Fine Dining</option>
-                    <option value="Kaki Lima">Kaki Lima</option>
-                    <option value="Bakery">Bakery</option>
+                <select class="form-select" id="inputTipe" aria-label="Default select example" name="id_kategori">
+                    <option value="1">Cepat Saji</option>
+                    <option value="2">Cafe</option>
+                    <option value="3">Fine Dining</option>
+                    <option value="4">Kaki Lima</option>
+                    <option value="5">Bakery</option>
                 </select>	
             </div> 
             <div class="mb-3">
