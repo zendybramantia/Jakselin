@@ -25,16 +25,21 @@ Route::get('/home', function(){
     return view('home');
 });
 
+// LOGIN ROUTE
 Route::get('/login', function(){
-    return view('login');
+    return view('login', ['status'=>""]);
 });
-
+Route::get('/login-error', function(){
+    return view('login', ['status'=>"Email or Password Salah"]);
+});
 Route::post('/login-user', [UserController::class, 'login']);
+// END LOGIN ROUTE
 
 Route::get('/editKuliner', function() {
     return view('editKuliner');
 });
 
+// REGISTER ROUTE
 Route::get('/register', function(){
     return view('register');
 });
@@ -46,3 +51,4 @@ Route::get('/edit-profile', [EditUserController::class, 'index']);
 Route::put('/edit-profile', [EditUserController::class, 'update']);
 
 Route::post('/register-user', [UserController::class, 'create']);
+// END REGISTER ROUTE

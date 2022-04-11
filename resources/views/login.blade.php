@@ -23,7 +23,7 @@
                 <form action="/login-user" class="login-form" method="POST">
                     @csrf
                     <div class="mb-3">
-                      <input type="email" class="form-control" name="email-login" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
+                      <input type="email" class="form-control" name="email-login" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
                     </div>
                     <div class="mb-3">
                       <input type="password" class="form-control" name="pass-login" id="exampleInputPassword1" placeholder="Password">
@@ -35,6 +35,7 @@
                     <div>
                         <a href="/register">Belum punya akun?</a>
                     </div>
+                    <div class="status">{{ $status }}</div>
                     <div class="d-flex justify-content-center mt-3">
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div>
