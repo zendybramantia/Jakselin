@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KulinerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
@@ -25,12 +26,16 @@ Route::get('/login', function(){
 
 Route::post('/login-user', [UserController::class, 'login']);
 
-Route::get('/editKuliner', function() {
-    return view('editKuliner');
-});
-
 Route::get('/register', function(){
     return view('register');
 });
 
 Route::post('/register-user', [UserController::class, 'create']);
+
+// Route::get('/tambah-kuliner', [KulinerController::class, 'index']);
+
+Route::get('/tambah-kuliner', function(){
+    return view('tambahKuliner');
+});
+
+Route::post('/tambah-kuliner-new', [KulinerController::class, 'create']);

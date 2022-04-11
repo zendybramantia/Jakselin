@@ -13,47 +13,49 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
-        <a class="navbar-brand" href="#">
-            <img class="ms-sm-3" src="/images/Vector.svg" alt="" height="24">
-        </a>    
-        <div class="d-flex justify-content-between" style="width: 30%;">
-            <form class="d-flex">
-                <input class="form-control me-2 rounded-pill" type="search" placeholder="Cari Tempat Kuliner..." aria-label="Search">
-            </form>
-            <a class="navbar-brand" href="#">Home</a>
-            <a href="">
-                <img style="height: 36px;" src="/images/Ellipse 11.svg" alt="">
-            </a>
-        </div>
-    </nav>
+    <x-navbar.nav2/>
     
     <div>
         <h2 class="judul">TAMBAH RELOMENDASI KULINER</h2>
     </div>
     
     <div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Nama Tempat</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1">
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Alamat</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1">
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
-        <div class="mb-3">
-            <label for="formFile" class="form-label">Gambar</label>
-            <input class="form-control" type="file" id="formFile">
-        </div>
+        <form action="/tambah-kuliner-new" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nama Tempat</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="nama_tempat">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Alamat</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="alamat">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deskripsi"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="inputTipe" class="form-label">Kategori</label>		
+                <select class="form-select" id="inputTipe" aria-label="Default select example" name="kategori">
+                    <option value="Cepat Saji">Cepat Saji</option>
+                    <option value="Cafe">Cafe</option>
+                    <option value="Fine Dining">Fine Dining</option>
+                    <option value="Kaki Lima">Kaki Lima</option>
+                    <option value="Bakery">Bakery</option>
+                </select>	
+            </div> 
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Gambar</label>
+                {{-- <input class="form-control" type="file" id="formFile" name="image"> --}}
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="gambar">
+            </div>
+            <div class="button">
+                <button type="submit" class="btn btn-outline-secondary">SUBMIT</button>
+            </div>
+        </form>
     </div>
     
-    <div class="button">
-        <a href="" class="btn btn-outline-secondary">SUBMIT</a>
-    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>   
 </body>
 </html>

@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('wisata_kuliners', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_tempat');
+            $table->string('alamat');
+            $table->string('deskripsi');
+            $table->string('kategori');
+            $table->string('gambar');
             $table->timestamps();
         });
     }
