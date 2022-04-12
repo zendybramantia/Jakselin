@@ -22,7 +22,7 @@
         <div class="login-container">
             <div style="width: 400px;">
                 <h1 style="text-align: center;">REGISTER</h1>
-                <form action="/register-user" method="POST">
+                <form action="/register" method="POST">
                   @csrf
                     <div class="mb-3">
                       <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama" name="name">

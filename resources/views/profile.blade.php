@@ -12,7 +12,7 @@
     <body>
         <div class="list" style="margin-top:8%">
             <div class="row justify-content-center">
-                <img src="{{ $user->avatar }}" class="rounded-circle" style="height: 279px" alt="">
+                <img src="{{ $user->avatar }}" class="rounded-circle" style="height: 279px; width:279px;" alt="">
             </div><br/>
             <div class="row justify-content-center">
                 <h2>{{ $user->name }}</h2>
@@ -34,7 +34,7 @@
                 </table>
             </div>
             <div class="row justify-content-center mt-4">
-                <a href="/edit-profile" class="btn btn-light">Edit Info</a>
+                <a href="/user/{{ $user }}/edit" class="btn btn-light">Edit Info</a>
             </div>
             <div class="row justify-content-center mt-3">
                 <a href="" class="btn btn-light">Log Out</a>
