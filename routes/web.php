@@ -35,14 +35,14 @@ Route::get('/editKuliner', function() {
     return view('editKuliner');
 });
 
-Route::get('/register', function(){
-    return view('register');
-});
 
-Route::get('/profile', [UserProfileController::class, 'index']);
+//User
+Route::get('/register', [UserController::class, 'create']);
 
-Route::get('/edit-profile', [EditUserController::class, 'index']);
+Route::post('/register', [UserController::class, 'store']);
 
-Route::put('/edit-profile', [EditUserController::class, 'update']);
+Route::get('/profile', [UserController::class, 'index']);
 
-Route::post('/register-user', [UserController::class, 'create']);
+Route::get('/profile/edit', [UserController::class, 'edit']);
+
+Route::put('/profile/edit', [UserController::class, 'update']);
