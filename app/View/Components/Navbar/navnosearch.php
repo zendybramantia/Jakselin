@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Navbar;
 
 use Illuminate\View\Component;
 
-class navbar.nav2 extends Component
+class navnosearch extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class navbar.nav2 extends Component
      */
     public function render()
     {
-        return view('components.navbar.nav2');
+        return view('components.navbar.navnosearch');
     }
 }

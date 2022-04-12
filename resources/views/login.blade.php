@@ -50,6 +50,7 @@
                     <div>
                         <a href="/register">Belum punya akun?</a>
                     </div>
+                    <div class="status">{{ $status }}</div>
                     <div class="d-flex justify-content-center mt-3">
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div>

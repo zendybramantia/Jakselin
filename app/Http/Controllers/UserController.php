@@ -56,6 +56,7 @@ class UserController extends Controller
                 'username' => $request->username,
                 'nohp' => $request->nohp
             ]);
+          
             return redirect('/login')->with('success', 'Registrasi berhasil');
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response("Nama, Email, atau Password tidak valid", 400);
@@ -64,7 +65,7 @@ class UserController extends Controller
             return response("Internal Server Error", 500);
         }
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -75,7 +76,7 @@ class UserController extends Controller
     {
         //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -87,7 +88,7 @@ class UserController extends Controller
         $user = Auth::user();
         return view('editUser', ['user' => $user]);
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -132,7 +133,7 @@ class UserController extends Controller
             return redirect('/profile')->with('error', 'Edit user gagal');
         }
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -143,14 +144,18 @@ class UserController extends Controller
     {
         //
     }
-
+    
     public function login(Request $request){
         if (Auth::attempt(["email" => $request->get('email-login'), "password" => $request->get('pass-login')])) {
             $user = Auth::user();
             // dd($user);
-            return redirect('/profile');
+            // return view('home');
+            return redirect('/home');
         } else {
-            return response("Nama atau password salah", 400);
+            // return response("Nama atau password salah", 400);
+            // return redirect('/');
+            // return view('login', ['status'=>"Email atau Password salah"]);
+            return redirect('/login-error');
         }
     }
 }
