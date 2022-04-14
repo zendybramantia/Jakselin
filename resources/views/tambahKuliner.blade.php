@@ -36,7 +36,7 @@
             </div>
             <div class="mb-3">
                 <label for="inputTipe" class="form-label">Kategori</label>		
-                <select class="form-select" id="inputTipe" aria-label="Default select example" name="id_kategori">
+                <select class="form-select" id="inputTipe" aria-label="Default select example" name="category_id">
                     <option value="1">Cepat Saji</option>
                     <option value="2">Cafe</option>
                     <option value="3">Fine Dining</option>

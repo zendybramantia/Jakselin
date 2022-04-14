@@ -40,18 +40,18 @@ class KulinerController extends Controller
         //
         try {
             $this->validate($request, [
+                'category_id' => "required",
                 'nama_tempat' => "required",
                 'alamat' => 'required',
-                'deskripsi' => 'required',
-                'id_kategori' => "required",
+                'deskripsi' => 'required|max:2056',
                 'gambar' => "required"
             ]);
 
             WisataKuliner::create([
+                'category_id' => $request->category_id,
                 'nama_tempat' => $request->nama_tempat,
                 'alamat' => $request->alamat,
                 'deskripsi' => $request->deskripsi,
-                'id_kategori' => $request->id_kategori,
                 'gambar' => $request->gambar
             ]);
             return response("Sukses", 200);

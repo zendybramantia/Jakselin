@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('wisata_kuliners', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id');
             $table->string('nama_tempat');
             $table->string('alamat');
-            $table->string('deskripsi');
-            $table->string('id_kategori');
+            $table->string('deskripsi', 2056);
             $table->string('gambar');
             $table->timestamps();
         });

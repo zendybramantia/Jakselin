@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+                        
+    protected $fillable = [
+        'nama'
+    ];
 
-    public function kulinery()
+    public function wisatakuliner()
     {
         return $this->hasMany(WisataKuliner::class);
     }
-
-    protected $fillable = [
-        'kategori'
-    ];
 
 }
