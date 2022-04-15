@@ -15,7 +15,9 @@ class KulinerController extends Controller
      */
     public function index()
     {
-        return view('Wisata');
+        return view('wisataAll', [
+            "wisatas" => WisataKuliner::all()
+        ]);
     }
 
     /**
@@ -44,17 +46,19 @@ class KulinerController extends Controller
                 'nama_tempat' => "required",
                 'alamat' => 'required',
                 'deskripsi' => 'required|max:2056',
-                'gambar' => "required"
+                'gambar' => "required|mimes:jpeg,jpg,png"
             ]);
+
+            $url = $request->file('gambar')->store('kuliner');
 
             WisataKuliner::create([
                 'category_id' => $request->category_id,
                 'nama_tempat' => $request->nama_tempat,
                 'alamat' => $request->alamat,
                 'deskripsi' => $request->deskripsi,
-                'gambar' => $request->gambar
+                'gambar' => "storage/" . $url
             ]);
-            return response("Sukses", 200);
+            return redirect('/');
         } catch (\Illuminate\Validation\ValidationException $e) {
             dd($e);
             return response("form yang diisi tidak valid", 400);
@@ -72,7 +76,9 @@ class KulinerController extends Controller
      */
     public function show(WisataKuliner $wisataKuliner)
     {
-        //
+        return view('profileKuliner', [
+            "profil" => $wisataKuliner
+        ]);
     }
 
     /**

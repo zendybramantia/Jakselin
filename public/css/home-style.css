@@ -41,20 +41,25 @@
     height: 250px;
     padding-top: 50px;
     justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 1350px;
+    flex-wrap: wrap;
 }
 
 .fast-food {
-    background-image: url("/images/category-fastfood.png");
+    background-image: url("/images/category-background.png");
+    background-color: white;
     width: 244px;
     height: 153px;
     border-radius: 10px;
     transition: 0.1s;
-    margin-right: 100px;
+    margin: 0px 50px 50px 50px;
+    transition: 0.15s;
 }
 
 .fast-food:hover {
-    width: 279px;
-    height: 175px;
+    transform: scale(1.2);
     transition: 0.5s;
 }
 
@@ -156,7 +161,6 @@ a {
 }
 
 .footer {
-    height: 30px;
     background-color: rgba(241, 241, 241, 0.879);
     display: flex;
     justify-content: center;

@@ -1,12 +1,10 @@
 <?php
 
 use App\Http\Controllers\KulinerController;
-use App\Http\Controllers\UserProfileController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\EditUserController;
-use App\Http\Controllers\SiteController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [SiteController::class, 'index']);
 
-Route::get('/home', function(){
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 // LOGIN ROUTE
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
@@ -57,5 +52,18 @@ Route::put('/User/profile/edit-user', [UserController::class, 'update']);
 
 //Wisata
 Route::get('/Wisata', [KulinerController::class, 'index']);
+
+//show data
+Route::get('/wisata', [KulinerController::class, 'index']);
+
+Route::get('/wisata/{wisataKuliner}', [KulinerController::class, 'show']);
+
+Route::get('/{category:name}', function (Category $category) {
+    return view('category', [
+        'wisatas' => $category->wisatakuliner,
+        'category' => $category->name
+    ]);
+});
+
 
 
