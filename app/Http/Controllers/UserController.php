@@ -44,8 +44,8 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:8',
-            'username' => 'required',
-            'nohp' => 'required'
+            'username' => 'required|unique:users',
+            'nohp' => 'required|min:12|max:12'
         ]);
 
         $validData['password'] = bcrypt($validData['password']);

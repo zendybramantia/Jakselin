@@ -1,54 +1,47 @@
+@extends('layouts.app')
 
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@section('title', '{!! $user->name !!}')
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <title>Hello, world!</title>
-    </head>
-    <body>
-        <div class="list" style="margin-top:8%">
-            <div class="row justify-content-center">
-                <img src="/{{ $user->avatar }}" class="rounded-circle" style="height: 279px; width:279px;" alt="">
-            </div><br/>
-            <div class="row justify-content-center">
-                <h2>{{ $user->name }}</h2>
-            </div>
-            <div class="row justify-content-center">
-                <table>
-                    <tr>
-                        <td style="width: 150px">Username</td>
-                        <td>: {{ $user->username }}</td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td>: {{ $user->email }}</td>
-                    </tr>
-                    <tr>
-                        <td>Telepon</td>
-                        <td>: {{ $user->nohp }}</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="row justify-content-center mt-4">
-                <a href="/User/{{ $user }}/edit" class="btn btn-light">Edit Info</a>
-            </div>
-            <div class="row justify-content-center mt-3">
-                <a href="/logout" class="btn btn-light">Log Out</a>
-            </div>
-        </div>
+@section('navbar')
+<nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/home">
+            <img class="ms-sm-3" src="/images/Jakselin-color.svg" alt="" height="24">
+        </a>
+    </div>
+</nav>
+@endsection
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-                crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-                crossorigin="anonymous"></script>
-    </body>
-</html>
+@section('content')
+<div class="list" style="margin-top:8%">
+    <div class="d-flex justify-content-center">
+        <img src="/{{ $user->avatar }}" class="rounded-circle" style="width:279px;" alt="">
+    </div>
+    <br/>
+    <div class="d-flex justify-content-center">
+        <h2>{{ $user->name }}</h2>
+    </div>
+    <div class="d-flex justify-content-center">
+        <table>
+            <tr>
+                <td style="width: 150px">Username</td>
+                <td>: {{ $user->username }}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>: {{ $user->email }}</td>
+            </tr>
+            <tr>
+                <td>Telepon</td>
+                <td>: {{ $user->nohp }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+        <a href="/User/profile/edit" class="btn btn-secondary text-white">Edit Info</a>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+        <a href="/logout" class="btn btn-secondary text-white">Log Out</a>
+    </div>
+</div>
+@endsection

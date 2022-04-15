@@ -27,7 +27,7 @@ Route::get('/home', function(){
 });
 
 // LOGIN ROUTE
-Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login/auth', [LoginController::class, 'authenticate']);
 Route::get('/logout', [LoginController::class, 'logout']);
 // END LOGIN ROUTE
@@ -49,10 +49,13 @@ Route::get('/User/create', [UserController::class, 'create'])->middleware('guest
 
 Route::post('/User/store', [UserController::class, 'store']);
 
-Route::get('/User/profile', [UserController::class, 'index']);
+Route::get('/User/profile', [UserController::class, 'index'])->middleware('auth');
 
 Route::get('/User/profile/edit', [UserController::class, 'edit']);
 
 Route::put('/User/profile/edit', [UserController::class, 'update']);
+
+//Wisata
+Route::get('/Wisata', [KulinerController::class, 'index']);
 
 

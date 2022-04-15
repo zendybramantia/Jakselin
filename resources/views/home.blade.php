@@ -14,7 +14,7 @@
         @auth
             <a class="navbar-brand" href="/User/profile">{{ auth()->user()->name }}</a>
             <a href="/User/profile">
-                <img style="height: 36px;" src="/images/profile.jpg" alt="">
+                <img class="rounded-circle" style="height: 36px;" src="/images/profile.jpg" alt="">
             </a>
         @else
             <a class="navbar-brand" href="/login">Login</a>
@@ -32,12 +32,12 @@
 <div class="kategori-container">
   <p>----- Pilih Kategori -----</p>
   <div class="select-kategori">
-      <a href="#">
+      <a href="/Wisata">
           <div class="fast-food">
               <p>Cepat Saji</p>
           </div>
       </a>
-      <a href="#">
+      <a href="/Wisata">
           <div class="cafe">
               <p>Cafe</p>
           </div>

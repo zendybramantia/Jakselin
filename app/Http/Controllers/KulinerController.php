@@ -15,7 +15,7 @@ class KulinerController extends Controller
      */
     public function index()
     {
-        return view('tambahKuliner');
+        return view('Wisata');
     }
 
     /**
