@@ -28,7 +28,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .kategori-container p {
@@ -83,6 +82,7 @@ a {
     height: 175px;
     transition: 0.5s;
 }
+
 .cafe p {
     color: white;
     text-align: center;
@@ -121,7 +121,6 @@ a {
     border-radius: 10px;
     transition: 0.1s;
     margin-right: 100px;
-
 }
 
 .kaki-lima p {

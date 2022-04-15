@@ -27,13 +27,9 @@ Route::get('/home', function(){
 });
 
 // LOGIN ROUTE
-Route::get('/login', function(){
-    return view('login', ['status'=>""]);
-});
-Route::get('/login-error', function(){
-    return view('login', ['status'=>"Email or Password Salah"]);
-});
-Route::post('/login-user', [UserController::class, 'login']);
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
+Route::post('/login/auth', [LoginController::class, 'authenticate']);
+Route::get('/logout', [LoginController::class, 'logout']);
 // END LOGIN ROUTE
 
 
@@ -49,16 +45,14 @@ Route::get('/editKuliner', function() {
 
 
 //User
-Route::get('/register', [UserController::class, 'create']);
+Route::get('/User/create', [UserController::class, 'create'])->middleware('guest');
 
-Route::post('/register', [UserController::class, 'store']);
+Route::post('/User/store', [UserController::class, 'store']);
 
-Route::get('/profile', [UserController::class, 'index']);
+Route::get('/User/profile', [UserController::class, 'index']);
 
-Route::get('/profile/edit', [UserController::class, 'edit']);
+Route::get('/User/profile/edit', [UserController::class, 'edit']);
 
-Route::put('/profile/edit', [UserController::class, 'update']);
-
-Route::post('/register-user', [UserController::class, 'create']);
+Route::put('/User/profile/edit', [UserController::class, 'update']);
 
 
