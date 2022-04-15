@@ -96,7 +96,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
         try {
             $user = Auth::user();
@@ -111,7 +111,7 @@ class UserController extends Controller
                 $url = $request->file('avatar')->store('profile');
                 
                 if($user->avatar != 'images/profile.jpg'){
-                    File::delete('assets/images/profile' . $user->avatar);
+                    File::delete($user->avatar);
                 }
 
                 User::where('id', $user->id)->update([
@@ -150,7 +150,7 @@ class UserController extends Controller
             $user = Auth::user();
             // dd($user);
             // return view('home');
-            return redirect('/home');
+            return redirect('/');
         } else {
             // return response("Nama atau password salah", 400);
             // return redirect('/');

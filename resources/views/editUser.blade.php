@@ -37,7 +37,7 @@
     <div>
         <h2 class="judul">EDIT USER</h2>
     </div>
-    <form action="/user/edit" method="post" enctype="multipart/form-data">
+    <form action="/profile/edit" method="post" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div>
