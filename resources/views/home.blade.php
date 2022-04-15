@@ -17,7 +17,10 @@
 </head>
 
 <body>
+  
+    @auth
     <x-navbar.navnosearch/>
+    @endauth
     <div class="header-container">
         <img src="/images/Header-logo.png" alt="">
         <p>Rekomendasi Wisata Kuliner Jakarta Selatan</p>

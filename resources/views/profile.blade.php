@@ -34,7 +34,7 @@
                 </table>
             </div>
             <div class="row justify-content-center mt-4">
-                <a href="/user/{{ $user }}/edit" class="btn btn-light">Edit Info</a>
+                <a href="/profile/edit" class="btn btn-light">Edit Info</a>
             </div>
             <div class="row justify-content-center mt-3">
                 <a href="" class="btn btn-light">Log Out</a>
