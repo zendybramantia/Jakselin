@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
     <a class="navbar-brand" href="#">
-        <img class="ms-sm-3" src="/images/Vector.svg" alt="" height="24">
+        <img class="ms-sm-3" src="/images/Jakselin-color.svg" alt="" height="24">
     </a>    
     <div class="d-flex justify-content-between" style="width: 30%;">
         <form class="d-flex">

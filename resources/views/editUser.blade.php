@@ -19,7 +19,23 @@
 
 <body>
 
-    <x-navbar.nav2 />
+    <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/home">
+                <img class="ms-sm-3" src="/images/Jakselin-color.svg" alt="" height="24">
+            </a>
+            <div class="d-flex justify-content-end" style="width: 16%;">
+              @auth
+                  <a class="navbar-brand" href="/User/profile">{{ auth()->user()->name }}</a>
+                  <a href="/User/profile">
+                      <img class="rounded-circle" style="height: 36px;" src="/images/profile.jpg" alt="">
+                  </a>
+              @else
+                  <a class="navbar-brand" href="/login">Login</a>
+              @endauth
+            </div>
+        </div>
+      </nav>
 
     @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -35,16 +51,16 @@
         </div>
     @endif
     <div>
-        <h2 class="judul">EDIT USER</h2>
+        <h2 class="judul text-center">EDIT USER</h2>
     </div>
-    <form action="/user/edit" method="post" enctype="multipart/form-data">
+    <form action="/User/profile/edit-user" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
-        <div>
+        <div class="container" style="width: 500px">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nama</label>
                 <input name="nama" type="text" class="form-control" id="exampleFormControlInput1"
-                    value="{{ $user->nama }}">
+                    value="{{ $user->name }}">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Username</label>
@@ -60,8 +76,10 @@
                 <label for="formFile" class="form-label">Foto Profil</label>
                 <input name="avatar" class="form-control" type="file" id="formFile">
             </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">

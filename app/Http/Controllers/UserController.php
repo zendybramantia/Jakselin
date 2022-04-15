@@ -116,10 +116,11 @@ class UserController extends Controller
                     "nohp" => $request->nohp
                 ]);
             }
-            
-            return redirect('/profile')->with('success', 'Registrasi berhasil');
+            dd($user);
+            // return redirect('/User/profile')->with('success', 'Registrasi berhasil');
         } catch (\Exception $e) {
-            return redirect('/profile')->with('error', 'Edit user gagal');
+            dd($user);
+            // return redirect('/User/profile')->with('error', 'Edit user gagal');
         }
     }
     

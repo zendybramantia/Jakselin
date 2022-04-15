@@ -53,7 +53,7 @@ Route::get('/User/profile', [UserController::class, 'index'])->middleware('auth'
 
 Route::get('/User/profile/edit', [UserController::class, 'edit']);
 
-Route::put('/User/profile/edit', [UserController::class, 'update']);
+Route::put('/User/profile/edit-user', [UserController::class, 'update']);
 
 //Wisata
 Route::get('/Wisata', [KulinerController::class, 'index']);
