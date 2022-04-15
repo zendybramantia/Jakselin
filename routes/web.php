@@ -21,7 +21,7 @@ use App\Models\Category;
 
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/home', [HomeController::class, 'index']);
+// Route::get('/home', [HomeController::class, 'index']);
 
 // LOGIN ROUTE
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
