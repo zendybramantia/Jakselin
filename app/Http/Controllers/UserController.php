@@ -85,7 +85,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
         try {
             $user = Auth::user();
@@ -93,34 +93,40 @@ class UserController extends Controller
                 'nama' => "required",
                 'username' => "required",
                 'nohp' => "required",
-                'avatar' => "required|mimes:jpeg,jpg,png"
+                'avatar' => "mimes:jpeg,jpg,png"
             ]);
 
+            $userUpdate = User::where('id', $user->id)->first();
+            
             if ($request->hasFile("avatar")) {
                 $url = $request->file('avatar')->store('profile');
                 
                 if($user->avatar != 'images/profile.jpg'){
                     File::delete($user->avatar);
                 }
-
-                User::where('id', $user->id)->update([
-                    "nama" => $request->nama,
+                
+                $userUpdate->update([
+                    "name" => $request->nama,
                     "username" => $request->username,
                     "nohp" => $request->nohp,
                     "avatar" => "storage/" . $url
                 ]);
+                $userUpdate->save();
             }else{
-                User::where('id', $user->id)->update([
-                    "nama" => $request->nama,
+                
+                $userUpdate->update([
+                    "name" => $request->nama,
                     "username" => $request->username,
                     "nohp" => $request->nohp
                 ]);
+                
+                $userUpdate->save();
             }
-            dd($user);
-            // return redirect('/User/profile')->with('success', 'Registrasi berhasil');
+            // dd($userUpdate);
+            return redirect('/User/profile')->with('success', 'Registrasi berhasil');
         } catch (\Exception $e) {
-            dd($user);
-            // return redirect('/User/profile')->with('error', 'Edit user gagal');
+            // dd($e);
+            return redirect('/User/profile')->with('error', 'Edit user gagal');
         }
     }
     
