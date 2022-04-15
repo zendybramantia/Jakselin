@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
@@ -17,7 +17,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+
+        return view('profile', ['user' => $user]);
     }
 
     /**
@@ -26,6 +28,17 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
+    {
+        return view('register');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreUserRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         try {
             $this->validate($request, [
@@ -43,7 +56,8 @@ class UserController extends Controller
                 'username' => $request->username,
                 'nohp' => $request->nohp
             ]);
-            return response("Sukses", 200);
+          
+            return redirect('/login')->with('success', 'Registrasi berhasil');
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response("Nama, Email, atau Password tidak valid", 400);
         } catch (\Exception $e) {
@@ -51,18 +65,7 @@ class UserController extends Controller
             return response("Internal Server Error", 500);
         }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreUserRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreUserRequest $request)
-    {
-        //
-    }
-
+    
     /**
      * Display the specified resource.
      *
@@ -73,7 +76,7 @@ class UserController extends Controller
     {
         //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -82,9 +85,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $user = Auth::user();
+        return view('editUser', ['user' => $user]);
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -94,9 +98,42 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
-    }
+        try {
+            $user = Auth::user();
+            $this->validate($request, [
+                'nama' => "required",
+                'username' => "required",
+                'nohp' => "required",
+                'avatar' => "required|mimes:jpeg,jpg,png"
+            ]);
 
+            if ($request->hasFile("avatar")) {
+                $url = $request->file('avatar')->store('profile');
+                
+                if($user->avatar != 'images/profile.jpg'){
+                    File::delete('assets/images/profile' . $user->avatar);
+                }
+
+                User::where('id', $user->id)->update([
+                    "nama" => $request->nama,
+                    "username" => $request->username,
+                    "nohp" => $request->nohp,
+                    "avatar" => "storage/" . $url
+                ]);
+            }else{
+                User::where('id', $user->id)->update([
+                    "nama" => $request->nama,
+                    "username" => $request->username,
+                    "nohp" => $request->nohp
+                ]);
+            }
+            
+            return redirect('/profile')->with('success', 'Registrasi berhasil');
+        } catch (\Exception $e) {
+            return redirect('/profile')->with('error', 'Edit user gagal');
+        }
+    }
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -107,14 +144,18 @@ class UserController extends Controller
     {
         //
     }
-
+    
     public function login(Request $request){
         if (Auth::attempt(["email" => $request->get('email-login'), "password" => $request->get('pass-login')])) {
             $user = Auth::user();
-            dd($user);
-            return view('profile');
+            // dd($user);
+            // return view('home');
+            return redirect('/home');
         } else {
-            return response("Nama atau password salah", 400);
+            // return response("Nama atau password salah", 400);
+            // return redirect('/');
+            // return view('login', ['status'=>"Email atau Password salah"]);
+            return redirect('/login-error');
         }
     }
 }

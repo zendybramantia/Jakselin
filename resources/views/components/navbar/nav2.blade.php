@@ -7,7 +7,7 @@
             <input class="form-control me-2 rounded-pill" type="search" placeholder="Cari Tempat Kuliner..." aria-label="Search">
         </form>
         <a class="navbar-brand" href="#">Home</a>
-        <a href="">
+        <a href="/home">
             <img style="height: 36px;" src="/images/Ellipse 11.svg" alt="">
         </a>
     </div>
