@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KulinerController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\EditUserController;
@@ -35,6 +36,13 @@ Route::get('/login-error', function(){
 Route::post('/login-user', [UserController::class, 'login']);
 // END LOGIN ROUTE
 
+
+Route::get('/kuliner', function(){
+    return view('tambahKuliner');
+});
+
+Route::post('/kuliner/tambah', [KulinerController::class, 'store']);
+
 Route::get('/editKuliner', function() {
     return view('editKuliner');
 });
@@ -52,4 +60,5 @@ Route::get('/profile/edit', [UserController::class, 'edit']);
 Route::put('/profile/edit', [UserController::class, 'update']);
 
 Route::post('/register-user', [UserController::class, 'create']);
+
 
