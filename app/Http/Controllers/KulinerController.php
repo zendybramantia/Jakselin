@@ -16,7 +16,7 @@ class KulinerController extends Controller
     public function index()
     {
         return view('wisataAll', [
-            "wisatas" => WisataKuliner::all()
+            "wisatas" => WisataKuliner::latest()->filter(request(['search']))->get()
         ]);
     }
 
