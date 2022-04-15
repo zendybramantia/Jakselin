@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -15,7 +16,10 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
-        return view('home', ['user' => $user]);
+        return view('home', [
+            'user' => $user,
+            'categories' => Category::all()
+        ]);
     }
 
     /**

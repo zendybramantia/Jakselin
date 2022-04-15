@@ -58,7 +58,7 @@ class KulinerController extends Controller
                 'deskripsi' => $request->deskripsi,
                 'gambar' => "storage/" . $url
             ]);
-            return redirect('home');
+            return redirect('/');
         } catch (\Illuminate\Validation\ValidationException $e) {
             dd($e);
             return response("form yang diisi tidak valid", 400);

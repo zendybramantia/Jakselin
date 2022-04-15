@@ -150,7 +150,7 @@ class UserController extends Controller
             $user = Auth::user();
             // dd($user);
             // return view('home');
-            return redirect('/home');
+            return redirect('/');
         } else {
             // return response("Nama atau password salah", 400);
             // return redirect('/');

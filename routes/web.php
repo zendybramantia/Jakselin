@@ -4,6 +4,7 @@ use App\Http\Controllers\KulinerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,14 @@ Route::post('/register-user', [UserController::class, 'create']);
 //show data
 Route::get('/wisata', [KulinerController::class, 'index']);
 
-Route::get('/wisata/{wisata}', [KulinerController::class, 'show']);
+Route::get('/wisata/{wisataKuliner}', [KulinerController::class, 'show']);
+
+Route::get('/{category:name}', function (Category $category) {
+    return view('category', [
+        'wisatas' => $category->wisatakuliner,
+        'category' => $category->name
+    ]);
+});
+
 
 
