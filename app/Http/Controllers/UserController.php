@@ -40,30 +40,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $this->validate($request, [
-                'name' => "required",
-                'email' => 'required|email',
-                'password' => 'required',
-                'username' => "required",
-                'nohp' => "required"
-            ]);
+        $validData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email:dns|unique:users',
+            'password' => 'required|min:8',
+            'username' => 'required|unique:users',
+            'nohp' => 'required|min:12|max:12'
+        ]);
 
-            User::create([
-                'nama' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-                'username' => $request->username,
-                'nohp' => $request->nohp
-            ]);
-          
-            return redirect('/login')->with('success', 'Registrasi berhasil');
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            return response("Nama, Email, atau Password tidak valid", 400);
-        } catch (\Exception $e) {
-            dd($e);
-            return response("Internal Server Error", 500);
-        }
+        $validData['password'] = bcrypt($validData['password']);
+
+        User::create($validData);
+
+        return redirect('/login')->with('success', 'Registrasi berhasil');
     }
     
     /**
@@ -127,10 +116,11 @@ class UserController extends Controller
                     "nohp" => $request->nohp
                 ]);
             }
-            
-            return redirect('/profile')->with('success', 'Registrasi berhasil');
+            dd($user);
+            // return redirect('/User/profile')->with('success', 'Registrasi berhasil');
         } catch (\Exception $e) {
-            return redirect('/profile')->with('error', 'Edit user gagal');
+            dd($user);
+            // return redirect('/User/profile')->with('error', 'Edit user gagal');
         }
     }
     
@@ -143,19 +133,5 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
-    }
-    
-    public function login(Request $request){
-        if (Auth::attempt(["email" => $request->get('email-login'), "password" => $request->get('pass-login')])) {
-            $user = Auth::user();
-            // dd($user);
-            // return view('home');
-            return redirect('/');
-        } else {
-            // return response("Nama atau password salah", 400);
-            // return redirect('/');
-            // return view('login', ['status'=>"Email atau Password salah"]);
-            return redirect('/login-error');
-        }
     }
 }
