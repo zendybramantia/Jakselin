@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\KulinerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -60,12 +61,7 @@ Route::get('/wisata', [KulinerController::class, 'index']);
 
 Route::get('/wisata/{wisataKuliner}', [KulinerController::class, 'show']);
 
-Route::get('/{category:name}', function (Category $category) {
-    return view('category', [
-        'wisatas' => $category->wisatakuliner,
-        'category' => $category->name
-    ]);
-});
+Route::get('/{category:name}', [CategoryController::class, 'index']);
 
 
 
