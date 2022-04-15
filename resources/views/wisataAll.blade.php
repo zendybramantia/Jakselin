@@ -14,7 +14,7 @@
           @auth
               <a class="navbar-brand" href="/User/profile">{{ auth()->user()->name }}</a>
               <a href="/User/profile">
-                  <img class="rounded-circle" style="height: 36px;" src="/images/profile.jpg" alt="">
+                  <img class="rounded-circle" style="height: 36px;" src="/{{ $user->avatar }}" alt="">
               </a>
           @else
               <a class="navbar-brand" href="/login">Login</a>

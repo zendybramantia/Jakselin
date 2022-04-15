@@ -13,9 +13,12 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Category $category)
     {
-        //
+        return view('category', [
+            'wisatas' => $category->wisatakuliner,
+            'category' => $category->name
+        ]);
     }
 
     /**
