@@ -28,7 +28,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .kategori-container p {
@@ -74,8 +73,94 @@ a {
     padding-top: 60px;
 }
 
+.cafe {
+    background-image: url("/images/category-cafe.png");
+    width: 244px;
+    height: 153px;
+    border-radius: 10px;
+    transition: 0.1s;
+    margin-right: 100px;
+}
+
+.cafe:hover {
+    width: 279px;
+    height: 175px;
+    transition: 0.5s;
+}
+
+.cafe p {
+    color: white;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.fine-dining {
+    background-image: url("/images/category-finedining.png");
+    width: 244px;
+    height: 153px;
+    border-radius: 10px;
+    transition: 0.1s;
+}
+
+.fine-dining p {
+    color: white;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.fine-dining:hover {
+    width: 279px;
+    height: 175px;
+    transition: 0.5s;
+}
+
+.select-kategori2 {
+    display: flex;
+    justify-content: center;
+}
+
+.kaki-lima {
+    background-image: url("/images/category-kakilima.png");
+    width: 244px;
+    height: 153px;
+    border-radius: 10px;
+    transition: 0.1s;
+    margin-right: 100px;
+}
+
+.kaki-lima p {
+    color: white;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.kaki-lima:hover {
+    width: 279px;
+    height: 175px;
+    transition: 0.5s;
+}
+
+.bakery {
+    background-image: url("/images/category-bakery.png");
+    width: 244px;
+    height: 153px;
+    border-radius: 10px;
+    transition: 0.1s;
+}
+
+.bakery p {
+    color: white;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.bakery:hover {
+    width: 279px;
+    height: 175px;
+    transition: 0.5s;
+}
+
 .footer {
-    
     background-color: rgba(241, 241, 241, 0.879);
     display: flex;
     justify-content: center;

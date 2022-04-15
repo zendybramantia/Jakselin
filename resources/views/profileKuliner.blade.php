@@ -16,8 +16,8 @@
 <body>
     <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img class="ms-sm-3" src="/images/Vector.svg" alt="" height="24">
+            <a class="navbar-brand" href="/home">
+                <img class="ms-sm-3" src="/images/Jakselin-color.svg" alt="" height="24">
             </a>
             <div class="d-flex " style="width: 16%;">
                 <a class="navbar-brand" href="#">Rifki Adi Pramana</a>
@@ -30,7 +30,7 @@
 
     <div class="profil-container">
         <div class="profil-image-container">
-            <img src="/{{ $profil->gambar }}" class="profil-image" alt="">
+            <img src="{{ $profil->gambar }}" class="profil-image" alt="">
         </div>
         <img src="storage/kuliner/asOIFOK4KWI4O6dhRB0rIZXRShLPp57jzNZMHgjH.jpg" alt="">
         <div class="profil-info-container">
