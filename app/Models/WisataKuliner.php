@@ -19,9 +19,19 @@ class WisataKuliner extends Model
         'gambar'
     ];
 
+    public function scopeFilter($query, array $filters) {
+        $query->when($filters['search'] ?? false, function($query, $search) {
+            return $query->where('nama_tempat', 'like', '%' . $search. '%')
+            ->orWhere('alamat', 'like', '%' . $search . '%')
+            ->orWhere('deskripsi', 'like', '%' . $search . '%');
+        });
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
+
 
 }
