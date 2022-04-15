@@ -4,6 +4,7 @@ use App\Http\Controllers\KulinerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Models\Category;
 
 /*
@@ -20,6 +21,7 @@ use App\Models\Category;
 
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index']);
 
 // LOGIN ROUTE
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
@@ -48,7 +50,7 @@ Route::get('/User/profile', [UserController::class, 'index'])->middleware('auth'
 
 Route::get('/User/profile/edit', [UserController::class, 'edit']);
 
-Route::put('/User/profile/edit-user', [UserController::class, 'update']);
+Route::put('/User/profile/edit', [UserController::class, 'update']);
 
 //Wisata
 Route::get('/Wisata', [KulinerController::class, 'index']);

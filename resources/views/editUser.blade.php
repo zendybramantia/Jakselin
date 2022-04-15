@@ -53,7 +53,7 @@
     <div>
         <h2 class="judul text-center">EDIT USER</h2>
     </div>
-    <form action="/User/profile/edit-user" method="POST" enctype="multipart/form-data">
+    <form action="/User/profile/edit" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div class="container" style="width: 500px">

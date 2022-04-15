@@ -14,7 +14,7 @@
         @auth
             <a class="navbar-brand" href="/User/profile">{{ auth()->user()->name }}</a>
             <a href="/User/profile">
-                <img class="rounded-circle" style="height: 36px;" src="/images/profile.jpg" alt="">
+                <img class="rounded-circle" style="height: 36px;" src="/{{ $user->avatar }}" alt="">
             </a>
         @else
             <a class="navbar-brand" href="/login">Login</a>
@@ -26,40 +26,28 @@
 
 @section('content')
 <div class="header-container">
-  <img src="/images/Header-logo.png" alt="">
-  <p>Rekomendasi Wisata Kuliner Jakarta Selatan</p>
+    <img src="/images/Header-logo.png" alt="">
+    <p>Rekomendasi Wisata Kuliner Jakarta Selatan</p>
+    <div class="col-md-6 mt-3">
+        <form>
+            <div class="input-group mb-6 " style="height: 45px;">
+                <input type="text" class="form-control" placeholder="Cari tempat kuliner ..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-warning" type="button" id="button-addon2">Search</button>
+            </div>
+        </form>
+    </div>
 </div>
 <div class="kategori-container">
-  <p>----- Pilih Kategori -----</p>
-  <div class="select-kategori">
-      <a href="/Wisata">
-          <div class="fast-food">
-              <p>Cepat Saji</p>
-          </div>
-      </a>
-      <a href="/Wisata">
-          <div class="cafe">
-              <p>Cafe</p>
-          </div>
-      </a>
-      <a href="#">
-          <div class="fine-dining">
-              <p>Fine Dining</p>
-          </div>
-      </a>
-  </div>
-  <div class="select-kategori2">
-      <a href="#">
-          <div class="kaki-lima">
-              <p>Kaki Lima</p>
-          </div>
-      </a>
-      <a href="#">
-          <div class="bakery">
-              <p>Bakery</p>
-          </div>
-      </a>
-  </div>
+    <p>----- Pilih Kategori -----</p>
+    <div class="select-kategori">
+        @foreach ($categories as $category)
+        <a href="/{{$category->name}}">
+            <div class="fast-food">
+                <p>{{ $category->name }}</p>
+            </div>
+        </a>
+        @endforeach
+    </div>
 </div>
 <div class="footer">
   <p>Dibuat Oleh Tim Jakselin</p>
