@@ -1,12 +1,16 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardCategoryController;
+use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\KulinerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +26,7 @@ use App\Models\Category;
 
 
 Route::get('/', [HomeController::class, 'index']);
-// Route::get('/home', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index']);
 
 // LOGIN ROUTE
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
@@ -64,6 +68,22 @@ Route::get('/wisata', [KulinerController::class, 'index']);
 Route::get('/wisata/{wisataKuliner}', [KulinerController::class, 'show']);
 
 Route::get('/{category:name}', [CategoryController::class, 'index']);
+
+//Dashboard
+// Route::get('/dashboard', function(){
+//     return view('Dashboard.home');
+// });
+// Route::get('/dashboard/categories', [DashboardController::class, 'index']);
+Route::resource('/dashboard/categories', DashboardCategoryController::class);
+// Route::get('/dashboard/user/{user:id}', [DashboardUserController::class, 'show']);
+Route::resource('/dashboard/users', DashboardUserController::class);
+Route::get('/dashboard/home', function(){
+    $user = Auth::user();
+    return view('Dashboard.home', [
+        'user'=>$user
+    ]);
+});
+
 
 
 

@@ -23,4 +23,9 @@ class User extends Authenticatable
         'password',
         'is_admin'
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
 }
