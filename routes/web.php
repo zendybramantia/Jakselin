@@ -8,7 +8,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\CommentController;
+use Illuminate\Support\Facades\Auth
 use App\Models\Category;
 use App\Models\User;
 
@@ -69,6 +70,9 @@ Route::get('/wisata/{wisataKuliner}', [KulinerController::class, 'show']);
 
 Route::get('/{category:name}', [CategoryController::class, 'index']);
 
+
+//komentar
+Route::post('/comment/post', [CommentController::class, 'store']);
 //Dashboard
 // Route::get('/dashboard', function(){
 //     return view('Dashboard.home');
@@ -83,7 +87,6 @@ Route::get('/dashboard/home', function(){
         'user'=>$user
     ]);
 });
-
 
 
 
