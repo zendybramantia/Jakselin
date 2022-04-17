@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('kuliner_id');
             $table->foreignId('user_id');
-            $table->string('body');
+            $table->string('body', 3000);
             $table->timestamps();
         });
     }

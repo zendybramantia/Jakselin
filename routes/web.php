@@ -9,7 +9,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CommentController;
-use Illuminate\Support\Facades\Auth
+use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\User;
 

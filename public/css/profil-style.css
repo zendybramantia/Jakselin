@@ -97,3 +97,75 @@ h5 {
     font-weight: 400;
     font-size: 21px;
 }
+
+.comment-container {
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid rgb(167, 167, 167);
+    padding-top: 25px;
+    align-items: flex-start;
+}
+
+.comment-profile {
+    margin-right: 15px;
+}
+
+.comment-profile img {
+    border-radius: 50%;
+    min-width:60px; 
+    height:60px; 
+    object-fit: cover;
+}
+
+.comment-content p {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: rgb(70, 70, 70);
+    margin-top: -5px;
+    text-align: justify;
+}
+
+.comment-content p:nth-child(1) {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.comment-content p:nth-child(3) {
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    color: rgb(117, 117, 117);;
+}
+
+.form-comment {
+    width: 900px;
+    border-radius: 0px;
+    border: 0px;
+    border-bottom: 1px solid black;
+}
+
+.komentar-title {
+    width: 900px;
+}
+
+.comment-input-container {
+    padding-top: 20px;
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    word-wrap: wrap;
+    word-break: break-all;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.comment-input-container h5 {
+    margin-bottom: 17px;
+}
+
+.btn {
+    margin-left: 830px;
+    background-color: rgb(0, 0, 118);
+    border: none;
+}
