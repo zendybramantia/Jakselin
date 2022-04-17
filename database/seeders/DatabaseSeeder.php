@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         $userTemporary = [];
         for ($i = 0; $i < 30; $i += 1) {
             $user = User::create([
-                'nama' => $faker->name(),
+                'name' => $faker->name(),
                 'email' => $faker->email(),
                 'username' => $faker->userName(),
                 'nohp' => '23232323',

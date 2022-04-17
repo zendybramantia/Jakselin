@@ -27,18 +27,12 @@ class WisataKuliner extends Model
         });
     }
 
-<<<<<<< HEAD
     public function comment()
     {
         return $this->hasMany(Comment::class);
     }
-=======
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
-
-
-
->>>>>>> c1268210def7d00e4e6b4311aad7f8f125967a9a
 }

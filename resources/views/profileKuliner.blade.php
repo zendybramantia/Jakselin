@@ -53,6 +53,25 @@
                 </form>
             </p>
         </div>
+
+        <div class="profil-info-container">
+            <h5>Komentar</h5>
+            <form action="/comment/post" method="post">
+                @csrf
+                <input type="hidden" name="kuliner_id" value="{{ $profil->id }}">
+                <input type="text" class="form-control" placeholder="Tambah komentar anda" name="body">
+                <button type="submit" class="btn btn-primary m-3">Kirim</button>
+            </form>
+        </div>
+
+        @foreach ($comments as $comment)
+        <div class="profil-info-container">
+            <h5 clasas="description">
+                <p>{{ $comment->User->username }}</p>
+                <p>{{ $comment->body }}</p>
+            </h5>
+        </div>
+        @endforeach
     
     </div>
 

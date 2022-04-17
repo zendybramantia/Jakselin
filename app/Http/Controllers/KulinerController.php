@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\WisataKuliner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -77,8 +78,12 @@ class KulinerController extends Controller
      */
     public function show(WisataKuliner $wisataKuliner)
     {
+        // $comments = Comment::all();
+        $comments = Comment::where('kuliner_id', $wisataKuliner->id)->get();
+
         return view('profileKuliner', [
-            "profil" => $wisataKuliner
+            "profil" => $wisataKuliner,
+            "comments" => $comments
         ]);
     }
 
