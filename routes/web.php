@@ -37,9 +37,11 @@ Route::get('/kuliner', function(){
 
 Route::post('/kuliner/tambah', [KulinerController::class, 'store']);
 
-Route::get('/editKuliner', function() {
-    return view('editKuliner');
-});
+Route::get('/kuliner/edit/{wisataKuliner}', [KulinerController::class, 'edit']);
+
+Route::put('/kuliner/edit/{wisataKuliner}', [KulinerController::class, 'update']);
+
+Route::put('/kuliner/hapus/{wisataKuliner}', [KulinerController::class, 'destroy']);
 
 
 //User

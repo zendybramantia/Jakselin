@@ -30,9 +30,8 @@
 
     <div class="profil-container">
         <div class="profil-image-container">
-            <img src="{{ $profil->gambar }}" class="profil-image" alt="">
+            <img src="/{{ $profil->gambar }}" class="profil-image" alt="">
         </div>
-        <img src="storage/kuliner/asOIFOK4KWI4O6dhRB0rIZXRShLPp57jzNZMHgjH.jpg" alt="">
         <div class="profil-info-container">
             <p class="title">{{ $profil->nama_tempat }}</p>
             <h5>Kategori</h5>
@@ -41,7 +40,19 @@
             <p class="address">{{ $profil->alamat }}</p>
             <h5>Deskripsi</h5>
             <p class="description"> {{ $profil->deskripsi }}</p>
-        </div>    
+        </div>  
+        <div class="mb-3 d-flex">
+            <p>
+                <a class="text-decoration-none me-3" href="/kuliner/edit/{{ $profil->id }}">Edit</a>
+                <p>|</p>
+                {{-- <a class="text-decoration-none ms-3" href="/kuliner/hapus/{{ $profil->id }}">Hapus</a> --}}
+                <form action="/kuliner/hapus/{{ $profil->id }}" method="POST" class="ms-3">
+                    @method('PUT')
+                    @csrf
+                    <button class="border-0 bg-white text-primary" onclick="return confirm('Apakah yakin ingin menghapus post?')">Hapus</button>
+                </form>
+            </p>
+        </div>
     
     </div>
 
