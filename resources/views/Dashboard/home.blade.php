@@ -1,19 +1,11 @@
-@extends('layouts.app')
-
-@section('title', "$user->name")
-
-@section('navbar')
-<nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/home">
-            <img class="ms-sm-3" src="/images/Jakselin-color.svg" alt="" height="24">
-        </a>
-    </div>
-</nav>
-@endsection
+@extends('Dashboard.layouts.main')
 
 @section('content')
-<div class="list" style="margin-top:2%">
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Welcome, {{ auth()->user()->username }}</h1>
+  </div>
+  <div class="list" style="margin-top:2%">
     <div class="d-flex justify-content-center">
         <img src="/{{ $user->avatar }}" class="rounded-circle img-thumbnail" style="width:279px; height:279px; object-fit:cover;" alt="">
     </div>
@@ -43,5 +35,7 @@
     <div class="d-flex justify-content-center mt-3">
         <a href="/logout" class="btn btn-secondary text-white">Log Out</a>
     </div>
-</div>
+  </div>
+</main>
+
 @endsection

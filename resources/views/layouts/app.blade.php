@@ -11,12 +11,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <title>Jakselin | @yield('title')</title>
+    @hasSection ('css')
     <link rel="stylesheet" href="/css/@yield('css')">
+    @else
+
+    @endif
   </head>
   <body>
-    @section('navbar')
+    <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="/home">
+              <img class="ms-sm-3" src="/images/Jakselin-color.svg" alt="" height="24">
+          </a>
+          <div class="d-flex justify-content-end" style="width: 16%;">
+            @auth
+              @if (app()->view->getSections()['title'] === "Home" || app()->view->getSections()['title'] === "Category") 
+                  
+              <a class="navbar-brand" href="/User/profile">{{ auth()->user()->name }}</a>
+              <a href="/User/profile">
+                  <img style="height: 36px;width: 36px; object-fit: cover;" class="rounded-circle" src="/{{ auth()->user()->avatar }}" alt="">
+              </a>
+              @endif
+            @else
+                <a class="navbar-brand" href="/login">Login</a>
+            @endauth
+          </div>
+      </div>
+    </nav>
+    {{-- @section('navbar') --}}
         {{-- This is the master sidebar. --}}
-    @show
+    {{-- @show --}}
 
     <div class="container-fluid px-0">
         @yield('content')

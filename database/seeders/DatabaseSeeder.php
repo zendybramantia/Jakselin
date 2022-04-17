@@ -67,5 +67,6 @@ class DatabaseSeeder extends Seeder
         //     'gambar' => 'https://source.unsplash.com/food/burger'
         // ]);
         WisataKuliner::factory(100)->create();
+        User::factory(10)->create();
     }
 }

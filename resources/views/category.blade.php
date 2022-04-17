@@ -1,4 +1,4 @@
-<!doctype html>
+{{-- <!doctype html>
 <html lang="en">
 
 <head>
@@ -13,8 +13,16 @@
     <link rel="stylesheet" href="/css/wisata-style.css">
 </head>
 
-<body>
-    <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
+<body> --}}
+
+@extends('layouts.app')
+
+@section('title', "Category")
+
+@section('css', 'wisata-style.css')
+
+
+    {{-- <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
         <div class="container-fluid">
             <a class="navbar-brand" href="/home">
                 <img class="ms-sm-3" src="/images/Jakselin-color.svg" alt="" height="24">
@@ -30,30 +38,25 @@
               @endauth
             </div>
         </div>
-      </nav>
+      </nav> --}}
 
+@section('content')
     
-
-    <div class="search-container">
-        <h1>Kategori "{{ $category }}"</h1>
-        @foreach ($wisatas as $wisata) 
-            <div class="card">
-                <img src="{{ $wisata->gambar }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $wisata->nama_tempat }}</h5>
-                    <p class="card-text">{{ $wisata->alamat }}</p>
-                    <a href="/wisata/{{ $wisata->id }}"><button type="button" class="btn btn-warning">Lihat Detail</button></a>
-                </div>
+<div class="search-container">
+    <h1>Kategori "{{ $category }}"</h1>
+    @foreach ($wisatas as $wisata) 
+        <div class="card">
+            <img src="{{ $wisata->gambar }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ $wisata->nama_tempat }}</h5>
+                <p class="card-text">{{ $wisata->alamat }}</p>
+                <a href="/wisata/{{ $wisata->id }}"><button type="button" class="btn btn-warning">Lihat Detail</button></a>
             </div>
-        @endforeach
-    </div>
+        </div>
+    @endforeach
+</div>
 
-    <div class="footer">
-        <p>Dibuat Oleh Tim Jakselin</p>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-
-</html>
+<div class="footer">
+    <p>Dibuat Oleh Tim Jakselin</p>
+</div>
+@endsection
