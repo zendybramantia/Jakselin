@@ -20,7 +20,7 @@
     </div>
     
     <div>
-        <form action="/kuliner/tambah" method="POST">
+        <form action="/kuliner/tambah" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nama Tempat</label>
@@ -46,8 +46,7 @@
             </div> 
             <div class="mb-3">
                 <label for="formFile" class="form-label">Gambar</label>
-                {{-- <input class="form-control" type="file" id="formFile" name="image"> --}}
-                <input type="text" class="form-control" id="exampleFormControlInput1" name="gambar">
+                <input class="form-control" type="file" id="formFile" name="gambar">
             </div>
             <div class="button">
                 <button type="submit" class="btn btn-outline-secondary">SUBMIT</button>

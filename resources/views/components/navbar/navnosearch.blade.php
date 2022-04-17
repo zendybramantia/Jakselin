@@ -3,10 +3,10 @@
         <a class="navbar-brand" href="/home">
             <img class="ms-sm-3" src="/images/Vector.svg" alt="" height="24">
         </a>
-        <div class="d-flex " style="width: 16%;">
-            <a class="navbar-brand" href="/login">Rifki Adi Pramana</a>
+        <div class="d-flex justify-content-end " style="width: 16%;">
+            <a class="navbar-brand" href="/profile">{{ auth()->user()->nama }}</a>
             <a href="#">
-                <img style="height: 36px;" src="/images/Ellipse 11.svg" alt="">
+                <img style="height: 36px;" src="{{ auth()->user()->avatar }}" alt="">
             </a>
         </div>
     </div>

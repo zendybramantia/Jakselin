@@ -1,53 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>Halaman Register</title>
+@extends('layouts.app')
 
-    <link rel="stylesheet" href="/css/Register-style.css">
-</head>
-<body>
-    <x-navbar.nav1/>
-    <!-- <div class="border position-relative" style="z-index: 10;">
-        <img class="position-absolute bottom-0 end-0" src="Group 7.svg" alt="">
-    </div> -->
-    <div class="global-container" style="background-image: url(images/background-img.svg);">
-        <div style="height: 100vh;"></div>
-        <div class="login-container">
-            <div style="width: 400px;">
-                <h1 style="text-align: center;">REGISTER</h1>
-                <form action="/register" method="POST">
-                  @csrf
-                    <div class="mb-3">
-                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama" name="name">
+@section('title', 'Register Account')
+
+@section('css', 'Register-style.css')
+
+@section('navbar')
+<nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/home">
+            <img class="ms-sm-3" src="/images/Jakselin-color.svg" alt="" height="24">
+        </a>
+    </div>
+</nav>
+@endsection
+
+@section('content')
+<div class="global-container" style="background-image: url(/images/background-img.svg)">
+    <div style="height: 100vh;"></div>
+    <div class="login-container">
+        <div style="width: 400px;">
+            <h1 style="text-align: center;">REGISTER</h1>
+            <form action="/User/store" method="POST">
+              @csrf
+                <div class="mb-3">
+                  <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" aria-describedby="emailHelp" placeholder="Nama" name="name" value="{{ old('name') }}">
+                  @error('name')
+                    <div class="invalid-feedback">
+                      {{ $message }}
                     </div>
-                    <div class="mb-3">
-                      <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Email" name="email">
-                    </div>
-                    <div class="mb-3">
-                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="No. HP" name="nohp">
-                    </div>
-                    <div class="mb-3">
-                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Username" name="username">
-                    </div>
-                    <div class="mb-3">
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
-                    </div>
-                    <div class="mb-3">
-                        <a href="/login">Sudah punya akun?</a>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">Register</button>
-                    </div>
-                </form>
-            </div>
+                  @enderror
+                </div>
+                <div class="mb-3">
+                  <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Email" name="email" value="{{ old('email') }}">
+                  @error('email')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                  @enderror
+                </div>
+                <div class="mb-3">
+                  <input type="text" class="form-control @error('nohp') is-invalid @enderror" id="nohp" placeholder="No. HP" name="nohp" value="{{ old('nohp') }}" >
+                  @error('nohp')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                  @enderror
+                </div>
+                <div class="mb-3">
+                  <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="Username" name="username" value="{{ old('username') }}" >
+                  @error('username')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                  @enderror
+                </div>
+                <div class="mb-3">
+                  <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="Password" name="password">
+                  @error('password')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                  @enderror
+                </div>
+                <div class="mb-3">
+                    <a href="/User/login">Sudah punya akun?</a>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </form>
         </div>
     </div>
-</body>
-</html>
+</div>
+@endsection

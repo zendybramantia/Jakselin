@@ -1,0 +1,61 @@
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card {
+    width: 900px;
+    margin-bottom: 40px;
+    margin-top: 10px;
+}
+
+.card img {
+    height: 400px;
+}
+
+h1 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    font-size: 25px;
+    float: left;
+    width: 900px;
+
+}
+
+.exception {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+   
+}
+
+.exception p {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    font-size: 25px;
+}
+
+.exception h1 {
+    margin-bottom: 200px;
+}
+
+
+.footer {
+    height: 30px;
+    background-color: rgba(241, 241, 241, 0.879);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.footer p {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+}

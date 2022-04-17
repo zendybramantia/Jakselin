@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\KulinerController;
-use App\Http\Controllers\UserProfileController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\EditUserController;
-use App\Http\Controllers\SiteController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,20 +20,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [SiteController::class, 'index']);
 
-Route::get('/home', function(){
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index']);
+// Route::get('/home', [HomeController::class, 'index']);
 
 // LOGIN ROUTE
-Route::get('/login', function(){
-    return view('login', ['status'=>""]);
-});
-Route::get('/login-error', function(){
-    return view('login', ['status'=>"Email or Password Salah"]);
-});
-Route::post('/login-user', [UserController::class, 'login']);
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
+Route::post('/login/auth', [LoginController::class, 'authenticate']);
+Route::get('/logout', [LoginController::class, 'logout']);
 // END LOGIN ROUTE
 
 
@@ -43,22 +37,33 @@ Route::get('/kuliner', function(){
 
 Route::post('/kuliner/tambah', [KulinerController::class, 'store']);
 
-Route::get('/editKuliner', function() {
-    return view('editKuliner');
-});
+Route::get('/kuliner/edit/{wisataKuliner}', [KulinerController::class, 'edit']);
+
+Route::put('/kuliner/edit/{wisataKuliner}', [KulinerController::class, 'update']);
+
+Route::put('/kuliner/hapus/{wisataKuliner}', [KulinerController::class, 'destroy']);
 
 
 //User
-Route::get('/register', [UserController::class, 'create']);
+Route::get('/User/create', [UserController::class, 'create'])->middleware('guest');
 
-Route::post('/register', [UserController::class, 'store']);
+Route::post('/User/store', [UserController::class, 'store']);
 
-Route::get('/profile', [UserController::class, 'index']);
+Route::get('/User/profile', [UserController::class, 'index'])->middleware('auth');
 
-Route::get('/profile/edit', [UserController::class, 'edit']);
+Route::get('/User/profile/edit', [UserController::class, 'edit']);
 
-Route::put('/profile/edit', [UserController::class, 'update']);
+Route::put('/User/profile/edit', [UserController::class, 'update']);
 
-Route::post('/register-user', [UserController::class, 'create']);
+//Wisata
+Route::get('/Wisata', [KulinerController::class, 'index']);
+
+//show data
+Route::get('/wisata', [KulinerController::class, 'index']);
+
+Route::get('/wisata/{wisataKuliner}', [KulinerController::class, 'show']);
+
+Route::get('/{category:name}', [CategoryController::class, 'index']);
+
 
 
