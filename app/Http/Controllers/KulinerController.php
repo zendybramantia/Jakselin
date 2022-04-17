@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\WisataKuliner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 
 class KulinerController extends Controller
@@ -89,7 +90,9 @@ class KulinerController extends Controller
      */
     public function edit(WisataKuliner $wisataKuliner)
     {
-        //
+        return view('editKuliner',[
+            "kuliner" => $wisataKuliner
+        ]);
     }
 
     /**
@@ -101,7 +104,58 @@ class KulinerController extends Controller
      */
     public function update(Request $request, WisataKuliner $wisataKuliner)
     {
-        //
+        try {
+
+            // $url = $request->file('gambar')->store('kuliner');
+
+            // DB::table('wisata_kuliners')->where('id',$request->id)->update([
+            //     'category_id' => $request->category_id,
+            //     'nama_tempat' => $request->nama_tempat,
+            //     'alamat' => $request->alamat,
+            //     'deskripsi' => $request->deskripsi,
+            //     'gambar' => "storage/" . $url
+            // ]);
+
+            $this->validate($request, [
+                'category_id' => "required",
+                'nama_tempat' => "required",
+                'alamat' => 'required',
+                'deskripsi' => 'required|max:2056',
+                'gambar' => "mimes:jpeg,jpg,png"
+            ]);
+
+            $kulinerUpdate = WisataKuliner::where('id', $wisataKuliner->id);
+            
+            if ($request->hasFile("gambar")) {
+                $url = $request->file('gambar')->store('kuliner');
+
+                File::delete($wisataKuliner->gambar);
+                
+                
+                $kulinerUpdate->update([
+                    'category_id' => $request->category_id,
+                    'nama_tempat' => $request->nama_tempat,
+                    'alamat' => $request->alamat,
+                    'deskripsi' => $request->deskripsi,
+                    'gambar' => "storage/" . $url
+                ]);
+                
+            }else{
+                
+                $kulinerUpdate->update([
+                    'category_id' => $request->category_id,
+                    'nama_tempat' => $request->nama_tempat,
+                    'alamat' => $request->alamat,
+                    'deskripsi' => $request->deskripsi,
+                ]);
+                
+            }
+            // dd($kulinerUpdate);
+            return redirect('/wisata')->with('success', 'edit berhasil');
+        } catch (\Exception $e) {
+            dd($e);
+            return redirect('/wisata')->with('error', 'Edit user gagal');
+        }
     }
 
     /**
@@ -112,6 +166,11 @@ class KulinerController extends Controller
      */
     public function destroy(WisataKuliner $wisataKuliner)
     {
-        //
+        try{
+            WisataKuliner::where('id', $wisataKuliner->id)->delete();
+        } catch (\Exception $e) {
+            dd($e);
+        }
+        return redirect('/wisata')->with('success', 'Post berhasil dihapus');      
     }
 }
