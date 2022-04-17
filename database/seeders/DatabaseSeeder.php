@@ -19,18 +19,17 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $faker = Faker::create('id_ID');
 
-
         // Seeding User
-        echo "Seeding User\n";
+        echo 'Seeding User\n';
         $userTemporary = [];
         for ($i = 0; $i < 30; $i += 1) {
             $user = User::create([
                 'nama' => $faker->name(),
                 'email' => $faker->email(),
                 'username' => $faker->userName(),
-                'nohp' => "23232323",
-                'avatar' => "images/profile.jpg",
-                'password' => bcrypt($faker->password())
+                'nohp' => '23232323',
+                'avatar' => 'images/profile.jpg',
+                'password' => bcrypt('123')
             ]);
             array_push($userTemporary, $user);
         }
