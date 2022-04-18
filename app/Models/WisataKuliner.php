@@ -41,3 +41,4 @@ class WisataKuliner extends Model
         return 'id';
     }
 }
+

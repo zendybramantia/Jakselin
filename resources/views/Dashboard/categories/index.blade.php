@@ -19,11 +19,11 @@
     <h1 class="h2">Categories</h1>
   </div>
   <div class="table-responsive col-md-8">
-    <a class="btn btn-primary" href="">Create new category</a>
+    <a class="btn btn-primary" href="/dashboard/categories/create">Create new category</a>
     <table class="table table-striped table-sm mt-3">
       <thead>
         <tr>
-          <th scope="col">ID</th>
+          <th scope="col">#</th>
           <th scope="col">Category Name</th>
           <th scope="col">Action</th>
         </tr>
@@ -40,7 +40,7 @@
             <a class="badge bg-warning" href="/dashboard/categories/{{ $category->id }}"><span data-feather="eye"></span></a>
             <a class="badge bg-info" href="/dashboard/categories/{{ $category->id }}/edit"><span data-feather="edit"></span></a>
             {{-- <a class="badge bg-danger" href=""><span data-feather="x-circle"></span></a> --}}
-            <button class="badge bg-danger border-0" onclick="return confirm('Apakah yakin ingin menghapus post?')"><span data-feather="x-circle"></span></button>
+            <button class="badge bg-danger border-0" onclick="return confirm('Apakah yakin ingin menghapus category?')"><span data-feather="x-circle"></span></button>
           </td>
         </tr>
         </form>

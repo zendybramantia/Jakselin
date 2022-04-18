@@ -6,7 +6,7 @@
     <h1 class="h2">Users</h1>
   </div>
   <div class="table-responsive col-lg-8">
-    <a class="btn btn-primary" href="">Create new user</a>
+    <a class="btn btn-primary" href="/dashboard/users/create">Create new user</a>
     @if (session()->has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
@@ -45,7 +45,7 @@
             <a class="badge bg-warning" href="/dashboard/users/{{ $user->id }}"><span data-feather="eye"></span></a>
             <a class="badge bg-info" href="/dashboard/users/{{ $user->id }}/edit"><span data-feather="edit"></span></a>
             {{-- <a class="badge bg-danger" href=""><span data-feather="x-circle"></span></a> --}}
-            <button class="badge bg-danger border-0" onclick="return confirm('Apakah yakin ingin menghapus post?')"><span data-feather="x-circle"></span></button>
+            <button class="badge bg-danger border-0" onclick="return confirm('Apakah yakin ingin menghapus User?')"><span data-feather="x-circle"></span></button>
           </td>
         </tr>
         </form>

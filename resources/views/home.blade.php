@@ -39,7 +39,7 @@
 </div>
 
 <div class="kategori-container">
-    <p>----- Pilih Kategori -----</p>
+    <p>Pilih Kategori</p>
     <div class="select-kategori">
         @foreach ($categories as $category)
         <a href="/{{$category->name}}">

@@ -24,18 +24,33 @@
         <div class="container" style="width: 500px">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nama</label>
-                <input name="nama" type="text" class="form-control" id="exampleFormControlInput1"
+                <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="exampleFormControlInput1"
                     value="{{ $user->name }}">
+                    @error('name')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                  @enderror
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Username</label>
-                <input name="username" type="text" class="form-control" id="exampleFormControlInput1"
+                <input name="username" type="text" class="form-control @error('username') is-invalid @enderror" id="exampleFormControlInput1"
                     value="{{ $user->username }}">
+                    @error('username')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                  @enderror
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Telepon</label>
-                <input name="nohp" type="text" class="form-control" id="exampleFormControlInput1"
+                <input name="nohp" type="text" class="form-control @error('nohp') is-invalid @enderror" id="exampleFormControlInput1"
                     value="{{ $user->nohp }}">
+                    @error('nohp')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                  @enderror
             </div>
             <div class="mb-3">
                 <label for="formFile" class="form-label">Foto Profil</label>
