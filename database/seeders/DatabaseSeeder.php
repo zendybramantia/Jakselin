@@ -27,6 +27,23 @@ class DatabaseSeeder extends Seeder
             'is_admin' => 1
         ]);
 
+
+        // Seeding User
+        $faker = Faker::create('id_ID');
+        echo 'Seeding User\n';
+        $userTemporary = [];
+        for ($i = 0; $i < 30; $i += 1) {
+            $user = User::create([
+                'name' => $faker->name(),
+                'email' => $faker->email(),
+                'username' => $faker->userName(),
+                'nohp' => '23232323',
+                'avatar' => 'images/profile.jpg',
+                'password' => bcrypt('123')
+            ]);
+            array_push($userTemporary, $user);
+        }
+
         Category::create([
             'name' => 'Cepat Saji'
         ]);

@@ -38,20 +38,39 @@
         <p class="address">{{ $profil->alamat }}</p>
         <h5>Deskripsi</h5>
         <p class="description"> {{ $profil->deskripsi }}</p>
-    </div>    
-    <div class="mb-3 d-flex">
-            <p>
-                <a class="text-decoration-none me-3" href="/kuliner/edit/{{ $profil->id }}">Edit</a>
-                <p>|</p>
-                {{-- <a class="text-decoration-none ms-3" href="/kuliner/hapus/{{ $profil->id }}">Hapus</a> --}}
-                <form action="/kuliner/hapus/{{ $profil->id }}" method="POST" class="ms-3">
-                    @method('PUT')
-                    @csrf
-                    <button class="border-0 bg-white text-primary" onclick="return confirm('Apakah yakin ingin menghapus post?')">Hapus</button>
-                </form>
-            </p>
+    </div>
+    
+    <div class="comment-input-container">
+        <h5 class="komentar-title">Komentar</h5>
+        <form action="/comment/post" method="post">
+            @csrf
+            <input type="hidden" name="kuliner_id" value="{{ $profil->id }}">
+            <textarea type="textarea" class="form-comment" placeholder="Tambah komentar anda" name="body"></textarea>
+            <button type="submit" class="btn btn-primary mt-2">Kirim</button>
+        </form>
+    </div>
+    
+    @foreach ($comments as $comment)
+    <div class="profil-info-container">
+        <div class="comment-container">
+            <div class="comment-profile">
+                <img src="/{{ $comment->User->avatar }}" class="rounded-circle img-thumbnail" " alt="">
+            </div>
+            <div class="comment-content">
+                <p>{{ $comment->User->username }}</p>
+                <p>{{ $comment->body }}</p>
+                <p>{{ $comment->created_at }}</p>
+            </div>
         </div>
+    </div>
+    @endforeach
+    
 </div>
+
+    
+
+        
+    
 
 <div class="footer">
     <p>Dibuat Oleh Tim Jakselin</p>
