@@ -30,7 +30,7 @@
         </table>
     </div>
     <div class="d-flex justify-content-center mt-4">
-        <a href="/User/profile/edit" class="btn btn-secondary text-white">Edit Info</a>
+        <a href="/dashboard/users/{{ $user->id }}/edit" class="btn btn-secondary text-white">Edit Info</a>
     </div>
     <div class="d-flex justify-content-center mt-3">
         <a href="/logout" class="btn btn-secondary text-white">Log Out</a>

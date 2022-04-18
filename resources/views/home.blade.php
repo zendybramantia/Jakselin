@@ -4,7 +4,7 @@
 
 @section('title', 'Home')
 
-@section('navbar')
+{{-- @section('navbar')
 <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
   <div class="container-fluid">
       <a class="navbar-brand" href="/home">
@@ -22,7 +22,7 @@
       </div>
   </div>
 </nav>
-@endsection
+@endsection --}}
 
 @section('content')    
 <div class="header-container">

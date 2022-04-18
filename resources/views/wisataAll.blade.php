@@ -14,7 +14,23 @@
 </head>
 <body>
     @auth
-        <x-navbar.navnosearch/>
+    <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/home">
+                <img class="ms-sm-3" src="/images/Jakselin-color.svg" alt="" height="24">
+            </a>
+            <div class="d-flex justify-content-end" style="width: 16%;">
+              @auth
+                  <a class="navbar-brand" href="/User/profile">{{ auth()->user()->name }}</a>
+                  <a href="/User/profile">
+                      <img style="height: 36px;width: 36px; object-fit: cover;" class="rounded-circle " src="/{{ auth()->user()->avatar }}" alt="">
+                  </a>
+              @else
+                  <a class="navbar-brand" href="/login">Login</a>
+              @endauth
+            </div>
+        </div>
+      </nav>
     @endauth
     @if ($wisatas->count())
         <div class="search-container">

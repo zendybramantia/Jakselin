@@ -27,7 +27,7 @@
 @section('content')    
 <div class="profil-container">
     <div class="profil-image-container">
-        <img src="{{ $profil->gambar }}" class="profil-image" alt="">
+        <img src="/{{ $profil->gambar }}" class="profil-image" alt="">
     </div>
     <img src="storage/kuliner/asOIFOK4KWI4O6dhRB0rIZXRShLPp57jzNZMHgjH.jpg" alt="">
     <div class="profil-info-container">

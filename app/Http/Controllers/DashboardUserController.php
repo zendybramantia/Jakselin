@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,6 +17,7 @@ class DashboardUserController extends Controller
     public function index()
     {
         // return User::all();
+        $this->authorize('admin');
         return view('Dashboard.user.index', [
             'userlist'=> User::all()
         ]);
@@ -78,10 +78,10 @@ class DashboardUserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, User $user)
     {
         try {
-            $user = Auth::user();
+            $data = $user;
             $this->validate($request, [
                 'nama' => "required",
                 'username' => "required",
@@ -89,7 +89,7 @@ class DashboardUserController extends Controller
                 'avatar' => "mimes:jpeg,jpg,png"
             ]);
 
-            $userUpdate = User::where('id', $user->id)->first();
+            $userUpdate = User::where('id', $data->id)->first();
             
             if ($request->hasFile("avatar")) {
                 $url = $request->file('avatar')->store('profile');
@@ -117,10 +117,11 @@ class DashboardUserController extends Controller
             }
             // dd($userUpdate);
             // return back()->back()->with('success', 'Registrasi berhasil');
-            return redirect('/dashboard/users')->with('success', 'Update user berhasil');
+            // dd($userUpdate);
+            return redirect('/dashboard/users/' . $user->id)->with('success', 'Update user berhasil');
         } catch (\Exception $e) {
             // dd($e);
-            // return redirect('/dashboard/users/{{ $user->id }}/edit')->with('error', 'Edit user gagal');
+            return redirect('/dashboard/users/' . $user->id)->with('error', 'Update user gagal');
         }
     }
 
@@ -132,6 +133,11 @@ class DashboardUserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        try{
+            User::where('id', $user->id)->delete();
+        } catch (\Exception $e) {
+            dd($e);
+        }
+        return redirect('/dashboard/users')->with('success', 'Post berhasil dihapus');
     }
 }

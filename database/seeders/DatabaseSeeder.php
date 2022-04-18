@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'azhar03456789@gmail.com',
             'nohp' => '081223727292',
             'username' => 'azhar03212',
-            'password' => bcrypt('azhar03.,')
+            'password' => bcrypt('azhar03.,'),
+            'is_admin' => 1
         ]);
 
 
