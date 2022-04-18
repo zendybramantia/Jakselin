@@ -29,7 +29,9 @@ class DashboardKulinerController extends Controller
      */
     public function create()
     {
-        //
+        return view('Dashboard.kuliner.create', [
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -40,7 +42,32 @@ class DashboardKulinerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $this->validate($request, [
+                'category_id' => "required",
+                'nama_tempat' => "required",
+                'alamat' => 'required',
+                'deskripsi' => 'required|max:2056',
+                'gambar' => "required|mimes:jpeg,jpg,png"
+            ]);
+
+            $url = $request->file('gambar')->store('kuliner');
+
+             $wisataKuliner = WisataKuliner::create([
+                'category_id' => $request->category_id,
+                'nama_tempat' => $request->nama_tempat,
+                'alamat' => $request->alamat,
+                'deskripsi' => $request->deskripsi,
+                'gambar' => "storage/" . $url
+            ]);
+            return redirect('/dashboard/kuliner/'.$wisataKuliner->id)->with('success', 'edit berhasil');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            dd($e);
+            return response("form yang diisi tidak valid", 400);
+        } catch (\Exception $e) {
+            dd($e);
+            return response("Internal Server Error", 500);
+        }
     }
 
     /**
@@ -68,7 +95,8 @@ class DashboardKulinerController extends Controller
     {
         // return $wisataKuliner;
         return view('Dashboard.kuliner.edit', [
-            'kuliner' => $wisataKuliner
+            'kuliner' => $wisataKuliner,
+            'categories' => Category::all()
         ]);
     }
 

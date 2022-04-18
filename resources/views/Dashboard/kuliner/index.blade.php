@@ -19,7 +19,7 @@
     <h1 class="h2">Wisata Kuliner</h1>
   </div>
   <div class="table-responsive col-lg-10">
-    <a class="btn btn-primary" href="">Create new Kuliner</a>
+    <a class="btn btn-primary" href="/dashboard/kuliner/create">Create new Kuliner</a>
     <table class="table table-striped table-sm mt-3">
       <thead>
         <tr>

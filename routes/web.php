@@ -37,19 +37,6 @@ Route::get('/logout', [LoginController::class, 'logout']);
 // END LOGIN ROUTE
 
 
-Route::get('/kuliner', function(){
-    return view('tambahKuliner');
-});
-
-Route::post('/kuliner/tambah', [KulinerController::class, 'store']);
-
-Route::get('/kuliner/edit/{wisataKuliner}', [KulinerController::class, 'edit']);
-
-Route::put('/kuliner/edit/{wisataKuliner}', [KulinerController::class, 'update']);
-
-Route::put('/kuliner/hapus/{wisataKuliner}', [KulinerController::class, 'destroy']);
-
-
 //User
 Route::get('/User/create', [UserController::class, 'create'])->middleware('guest');
 
@@ -81,6 +68,8 @@ Route::post('/comment/post', [CommentController::class, 'store']);
 
 Route::resource('/dashboard/categories', DashboardCategoryController::class)->middleware('auth')->middleware('admin');
 Route::resource('/dashboard/users', DashboardUserController::class)->middleware('auth')->middleware('admin');
+Route::get('/dashboard/kuliner/create', [DashboardKulinerController::class, 'create'])->middleware('auth')->middleware('admin');
+Route::post('/dashboard/kuliner/store', [DashboardKulinerController::class, 'store'])->middleware('auth')->middleware('admin');
 Route::get('/dashboard/kuliner/{wisataKuliner}', [DashboardKulinerController::class, 'show'])->middleware('auth')->middleware('admin');
 Route::get('/dashboard/kuliner/{wisataKuliner}/edit', [DashboardKulinerController::class, 'edit'])->middleware('auth')->middleware('admin');
 Route::put('/dashboard/kuliner/{wisataKuliner}', [DashboardKulinerController::class, 'update'])->middleware('auth')->middleware('admin');

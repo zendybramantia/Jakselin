@@ -29,7 +29,7 @@ class KulinerController extends Controller
      */
     public function create(Request $request)
     {
-        return view('kuliner/tambah');
+        
         
     }
 
@@ -41,33 +41,33 @@ class KulinerController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        try {
-            $this->validate($request, [
-                'category_id' => "required",
-                'nama_tempat' => "required",
-                'alamat' => 'required',
-                'deskripsi' => 'required|max:2056',
-                'gambar' => "required|mimes:jpeg,jpg,png"
-            ]);
+        // //
+        // try {
+        //     $this->validate($request, [
+        //         'category_id' => "required",
+        //         'nama_tempat' => "required",
+        //         'alamat' => 'required',
+        //         'deskripsi' => 'required|max:2056',
+        //         'gambar' => "required|mimes:jpeg,jpg,png"
+        //     ]);
 
-            $url = $request->file('gambar')->store('kuliner');
+        //     $url = $request->file('gambar')->store('kuliner');
 
-            WisataKuliner::create([
-                'category_id' => $request->category_id,
-                'nama_tempat' => $request->nama_tempat,
-                'alamat' => $request->alamat,
-                'deskripsi' => $request->deskripsi,
-                'gambar' => "storage/" . $url
-            ]);
-            return redirect('/');
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            dd($e);
-            return response("form yang diisi tidak valid", 400);
-        } catch (\Exception $e) {
-            dd($e);
-            return response("Internal Server Error", 500);
-        }
+        //     WisataKuliner::create([
+        //         'category_id' => $request->category_id,
+        //         'nama_tempat' => $request->nama_tempat,
+        //         'alamat' => $request->alamat,
+        //         'deskripsi' => $request->deskripsi,
+        //         'gambar' => "storage/" . $url
+        //     ]);
+        //     return redirect('/');
+        // } catch (\Illuminate\Validation\ValidationException $e) {
+        //     dd($e);
+        //     return response("form yang diisi tidak valid", 400);
+        // } catch (\Exception $e) {
+        //     dd($e);
+        //     return response("Internal Server Error", 500);
+        // }
     }
 
     /**
@@ -95,9 +95,9 @@ class KulinerController extends Controller
      */
     public function edit(WisataKuliner $wisataKuliner)
     {
-        return view('editKuliner',[
-            "kuliner" => $wisataKuliner
-        ]);
+        // return view('editKuliner',[
+        //     "kuliner" => $wisataKuliner
+        // ]);
     }
 
     /**
@@ -109,58 +109,58 @@ class KulinerController extends Controller
      */
     public function update(Request $request, WisataKuliner $wisataKuliner)
     {
-        try {
+        // try {
 
-            // $url = $request->file('gambar')->store('kuliner');
+        //     // $url = $request->file('gambar')->store('kuliner');
 
-            // DB::table('wisata_kuliners')->where('id',$request->id)->update([
-            //     'category_id' => $request->category_id,
-            //     'nama_tempat' => $request->nama_tempat,
-            //     'alamat' => $request->alamat,
-            //     'deskripsi' => $request->deskripsi,
-            //     'gambar' => "storage/" . $url
-            // ]);
+        //     // DB::table('wisata_kuliners')->where('id',$request->id)->update([
+        //     //     'category_id' => $request->category_id,
+        //     //     'nama_tempat' => $request->nama_tempat,
+        //     //     'alamat' => $request->alamat,
+        //     //     'deskripsi' => $request->deskripsi,
+        //     //     'gambar' => "storage/" . $url
+        //     // ]);
 
-            $this->validate($request, [
-                'category_id' => "required",
-                'nama_tempat' => "required",
-                'alamat' => 'required',
-                'deskripsi' => 'required|max:2056',
-                'gambar' => "mimes:jpeg,jpg,png"
-            ]);
+        //     $this->validate($request, [
+        //         'category_id' => "required",
+        //         'nama_tempat' => "required",
+        //         'alamat' => 'required',
+        //         'deskripsi' => 'required|max:2056',
+        //         'gambar' => "mimes:jpeg,jpg,png"
+        //     ]);
 
-            $kulinerUpdate = WisataKuliner::where('id', $wisataKuliner->id);
+        //     $kulinerUpdate = WisataKuliner::where('id', $wisataKuliner->id);
             
-            if ($request->hasFile("gambar")) {
-                $url = $request->file('gambar')->store('kuliner');
+        //     if ($request->hasFile("gambar")) {
+        //         $url = $request->file('gambar')->store('kuliner');
 
-                File::delete($wisataKuliner->gambar);
+        //         File::delete($wisataKuliner->gambar);
                 
                 
-                $kulinerUpdate->update([
-                    'category_id' => $request->category_id,
-                    'nama_tempat' => $request->nama_tempat,
-                    'alamat' => $request->alamat,
-                    'deskripsi' => $request->deskripsi,
-                    'gambar' => "storage/" . $url
-                ]);
+        //         $kulinerUpdate->update([
+        //             'category_id' => $request->category_id,
+        //             'nama_tempat' => $request->nama_tempat,
+        //             'alamat' => $request->alamat,
+        //             'deskripsi' => $request->deskripsi,
+        //             'gambar' => "storage/" . $url
+        //         ]);
                 
-            }else{
+        //     }else{
                 
-                $kulinerUpdate->update([
-                    'category_id' => $request->category_id,
-                    'nama_tempat' => $request->nama_tempat,
-                    'alamat' => $request->alamat,
-                    'deskripsi' => $request->deskripsi,
-                ]);
+        //         $kulinerUpdate->update([
+        //             'category_id' => $request->category_id,
+        //             'nama_tempat' => $request->nama_tempat,
+        //             'alamat' => $request->alamat,
+        //             'deskripsi' => $request->deskripsi,
+        //         ]);
                 
-            }
-            // dd($kulinerUpdate);
-            return redirect('/wisata')->with('success', 'edit berhasil');
-        } catch (\Exception $e) {
-            dd($e);
-            return redirect('/wisata')->with('error', 'Edit user gagal');
-        }
+        //     }
+        //     // dd($kulinerUpdate);
+        //     return redirect('/wisata')->with('success', 'edit berhasil');
+        // } catch (\Exception $e) {
+        //     dd($e);
+        //     return redirect('/wisata')->with('error', 'Edit user gagal');
+        // }
     }
 
     /**
@@ -171,11 +171,11 @@ class KulinerController extends Controller
      */
     public function destroy(WisataKuliner $wisataKuliner)
     {
-        try{
-            WisataKuliner::where('id', $wisataKuliner->id)->delete();
-        } catch (\Exception $e) {
-            dd($e);
-        }
-        return redirect('/wisata')->with('success', 'Post berhasil dihapus');      
+        // try{
+        //     WisataKuliner::where('id', $wisataKuliner->id)->delete();
+        // } catch (\Exception $e) {
+        //     dd($e);
+        // }
+        // return redirect('/wisata')->with('success', 'Post berhasil dihapus');      
     }
 }
