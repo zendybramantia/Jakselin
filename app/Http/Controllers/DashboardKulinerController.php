@@ -134,7 +134,7 @@ class DashboardKulinerController extends Controller
             if ($request->hasFile("gambar")) {
                 $url = $request->file('gambar')->store('kuliner');
 
-                File::delete($wisataKuliner->gambar);
+                // File::delete($wisataKuliner->gambar);
                 
                 
                 $kulinerUpdate->update([
