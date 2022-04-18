@@ -15,6 +15,7 @@ class DashboardCategoryController extends Controller
      */
     public function index()
     {
+        $this->authorize('admin');
         return view('Dashboard.categories.index', [
             'categories' => Category::all(),
             'wisata' => WisataKuliner::all()
@@ -63,9 +64,11 @@ class DashboardCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('Dashboard.categories.edit', [
+            'category' => $category
+        ]);
     }
 
     /**
@@ -75,9 +78,26 @@ class DashboardCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        try {
+            $data = $category;
+            $this->validate($request, [
+                'name' => "required",
+            ]);
+
+            $categoryUpdate = Category::where('id', $data->id)->first();
+                
+            $categoryUpdate->update([
+                "name" => $request->name,
+            ]);
+            
+            $categoryUpdate->save();
+            return redirect('/dashboard/categories/' . $category->id)->with('success', 'Update user berhasil');
+        } catch (\Exception $e) {
+            // dd($e);
+            return redirect('/dashboard/categories/' . $category->id)->with('error', 'Update user gagal');
+        }
     }
 
     /**
@@ -86,8 +106,13 @@ class DashboardCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        try{
+            Category::where('id', $category->id)->delete();
+        } catch (\Exception $e) {
+            dd($e);
+        }
+        return redirect('/dashboard/categories')->with('success', 'Post berhasil dihapus');  
     }
 }

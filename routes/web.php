@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardCategoryController;
+use App\Http\Controllers\DashboardKulinerController;
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\KulinerController;
 use App\Http\Controllers\HomeController;
@@ -60,7 +61,7 @@ Route::get('/User/profile/edit', [UserController::class, 'edit']);
 Route::put('/User/profile/edit', [UserController::class, 'update']);
 
 //Wisata
-Route::get('/Wisata', [KulinerController::class, 'index']);
+// Route::get('/Wisata', [KulinerController::class, 'index']);
 
 //show data
 Route::get('/wisata', [KulinerController::class, 'index']);
@@ -73,16 +74,20 @@ Route::get('/{category:name}', [CategoryController::class, 'index']);
 // Route::get('/dashboard', function(){
 //     return view('Dashboard.home');
 // });
-// Route::get('/dashboard/categories', [DashboardController::class, 'index']);
-Route::resource('/dashboard/categories', DashboardCategoryController::class);
-// Route::get('/dashboard/user/{user:id}', [DashboardUserController::class, 'show']);
-Route::resource('/dashboard/users', DashboardUserController::class);
-Route::get('/dashboard/home', function(){
+
+Route::resource('/dashboard/categories', DashboardCategoryController::class)->middleware('auth')->middleware('admin');
+Route::resource('/dashboard/users', DashboardUserController::class)->middleware('auth')->middleware('admin');
+Route::get('/dashboard/kuliner/{wisataKuliner}', [DashboardKulinerController::class, 'show'])->middleware('auth')->middleware('admin');
+Route::get('/dashboard/kuliner/{wisataKuliner}/edit', [DashboardKulinerController::class, 'edit'])->middleware('auth')->middleware('admin');
+Route::put('/dashboard/kuliner/{wisataKuliner}', [DashboardKulinerController::class, 'update'])->middleware('auth')->middleware('admin');
+Route::put('/dashboard/kuliner/{wisataKuliner}/destroy', [DashboardKulinerController::class, 'destroy'])->middleware('auth')->middleware('admin');
+Route::resource('/dashboard/kuliner', DashboardKulinerController::class)->middleware('auth')->middleware('admin');
+Route::get('/dashboard/home', function(){  
     $user = Auth::user();
     return view('Dashboard.home', [
         'user'=>$user
     ]);
-});
+})->middleware('auth')->middleware('admin');
 
 
 

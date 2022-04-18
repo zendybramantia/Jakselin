@@ -32,6 +32,9 @@
       </thead>
       <tbody>
         @foreach ($userlist as $user)
+        <form action="/dashboard/users/{{ $user->id }}" method="POST" class="ms-3">
+        @method('DELETE')
+        @csrf
         <tr>
           <td>{{ $loop->iteration }}</td>
           <td>{{ $user->name }}</td>
@@ -41,9 +44,11 @@
           <td>
             <a class="badge bg-warning" href="/dashboard/users/{{ $user->id }}"><span data-feather="eye"></span></a>
             <a class="badge bg-info" href="/dashboard/users/{{ $user->id }}/edit"><span data-feather="edit"></span></a>
-            <a class="badge bg-danger" href=""><span data-feather="x-circle"></span></a>
+            {{-- <a class="badge bg-danger" href=""><span data-feather="x-circle"></span></a> --}}
+            <button class="badge bg-danger border-0" onclick="return confirm('Apakah yakin ingin menghapus post?')"><span data-feather="x-circle"></span></button>
           </td>
         </tr>
+        </form>
         @endforeach
       </tbody>
     </table>

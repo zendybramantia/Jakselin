@@ -4,7 +4,7 @@
 
 @section('css', 'login-style.css')
 
-@section('navbar')
+{{-- @section('navbar')
 <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
     <div class="container-fluid">
         <a class="navbar-brand" href="/home">
@@ -12,7 +12,7 @@
         </a>
     </div>
 </nav>
-@endsection
+@endsection --}}
 
 @section('content')
 <div class="global-container" style="background-image: url(/images/background-img.svg)">
