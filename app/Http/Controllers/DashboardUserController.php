@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class DashboardUserController extends Controller
 {
@@ -30,7 +31,7 @@ class DashboardUserController extends Controller
      */
     public function create()
     {
-        //
+        return view('Dashboard.user.create');
     }
 
     /**
@@ -41,7 +42,19 @@ class DashboardUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email:dns|unique:users',
+            'password' => 'required|min:8',
+            'username' => 'required|unique:users',
+            'nohp' => 'required|min:12|max:12'
+        ]);
+
+        $validData['password'] = bcrypt($validData['password']);
+
+        User::create($validData);
+
+        return redirect('/dashboard/users')->with('success', 'Registrasi '.$request->name.' berhasil');
     }
 
     /**
@@ -80,49 +93,44 @@ class DashboardUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        try {
-            $data = $user;
-            $this->validate($request, [
-                'nama' => "required",
-                'username' => "required",
-                'nohp' => "required",
-                'avatar' => "mimes:jpeg,jpg,png"
-            ]);
+        $data = $user;
+        $this->validate($request, [
+            'name' => "required",
+            'username' => "required",
+            'nohp' => "required",
+            'avatar' => "mimes:jpeg,jpg,png"
+        ]);
 
-            $userUpdate = User::where('id', $data->id)->first();
+        $userUpdate = User::where('id', $data->id)->first();
+        
+        if ($request->hasFile("avatar")) {
+            $url = $request->file('avatar')->store('profile');
             
-            if ($request->hasFile("avatar")) {
-                $url = $request->file('avatar')->store('profile');
-                
-                if($user->avatar != 'images/profile.jpg'){
-                    File::delete($user->avatar);
-                }
-                
-                $userUpdate->update([
-                    "name" => $request->nama,
-                    "username" => $request->username,
-                    "nohp" => $request->nohp,
-                    "avatar" => "storage/" . $url
-                ]);
-                $userUpdate->save();
-            }else{
-                
-                $userUpdate->update([
-                    "name" => $request->nama,
-                    "username" => $request->username,
-                    "nohp" => $request->nohp
-                ]);
-                
-                $userUpdate->save();
+            if($user->avatar != 'images/profile.jpg'){
+                File::delete($user->avatar);
             }
-            // dd($userUpdate);
-            // return back()->back()->with('success', 'Registrasi berhasil');
-            // dd($userUpdate);
-            return redirect('/dashboard/users/' . $user->id)->with('success', 'Update user berhasil');
-        } catch (\Exception $e) {
-            // dd($e);
-            return redirect('/dashboard/users/' . $user->id)->with('error', 'Update user gagal');
+            
+            $userUpdate->update([
+                "name" => $request->name,
+                "username" => $request->username,
+                "nohp" => $request->nohp,
+                "avatar" => "storage/" . $url
+            ]);
+            $userUpdate->save();
+        }else{
+            
+            $userUpdate->update([
+                "name" => $request->name,
+                "username" => $request->username,
+                "nohp" => $request->nohp
+            ]);
+            
+            $userUpdate->save();
         }
+        // dd($userUpdate);
+        // return back()->back()->with('success', 'Registrasi berhasil');
+        // dd($userUpdate);
+        return redirect('/dashboard/users/' . $user->id)->with('success', 'Update user berhasil');
     }
 
     /**
@@ -138,6 +146,6 @@ class DashboardUserController extends Controller
         } catch (\Exception $e) {
             dd($e);
         }
-        return redirect('/dashboard/users')->with('success', 'Post berhasil dihapus');
+        return redirect('/dashboard/users')->with('success', 'User '.$user->name.' berhasil dihapus');
     }
 }

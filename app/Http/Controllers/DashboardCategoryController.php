@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\WisataKuliner;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class DashboardCategoryController extends Controller
 {
@@ -29,7 +30,7 @@ class DashboardCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('Dashboard.categories.create');
     }
 
     /**
@@ -40,7 +41,13 @@ class DashboardCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validData = $request->validate([
+            'name' => 'required',
+        ]);
+
+        Category::create($validData);
+
+        return redirect('/dashboard/categories')->with('success', 'Registrasi '.$request->name.' berhasil');
     }
 
     /**
@@ -109,10 +116,12 @@ class DashboardCategoryController extends Controller
     public function destroy(Category $category)
     {
         try{
-            Category::where('id', $category->id)->delete();
+            // Category::where('id', $category->id)->delete();
+            Category::find($category->id)->delete();
+            // Category::deleting(Category::where('id', $category->id));
         } catch (\Exception $e) {
             dd($e);
         }
-        return redirect('/dashboard/categories')->with('success', 'Post berhasil dihapus');  
+        return redirect('/dashboard/categories')->with('success', 'Category '. $category->name . ' berhasil dihapus');  
     }
 }

@@ -87,47 +87,42 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        try {
-            $user = Auth::user();
-            $this->validate($request, [
-                'nama' => "required",
-                'username' => "required",
-                'nohp' => "required",
-                'avatar' => "mimes:jpeg,jpg,png"
-            ]);
+        $user = Auth::user();
+        $this->validate($request, [
+            'name' => "required",
+            'username' => "required",
+            'nohp' => "required",
+            'avatar' => "mimes:jpeg,jpg,png"
+        ]);
 
-            $userUpdate = User::where('id', $user->id)->first();
+        $userUpdate = User::where('id', $user->id)->first();
+        
+        if ($request->hasFile("avatar")) {
+            $url = $request->file('avatar')->store('profile');
             
-            if ($request->hasFile("avatar")) {
-                $url = $request->file('avatar')->store('profile');
-                
-                if($user->avatar != 'images/profile.jpg'){
-                    File::delete($user->avatar);
-                }
-                
-                $userUpdate->update([
-                    "name" => $request->nama,
-                    "username" => $request->username,
-                    "nohp" => $request->nohp,
-                    "avatar" => "storage/" . $url
-                ]);
-                $userUpdate->save();
-            }else{
-                
-                $userUpdate->update([
-                    "name" => $request->nama,
-                    "username" => $request->username,
-                    "nohp" => $request->nohp
-                ]);
-                
-                $userUpdate->save();
+            if($user->avatar != 'images/profile.jpg'){
+                File::delete($user->avatar);
             }
-            // dd($userUpdate);
-            return redirect('/User/profile')->with('success', 'Registrasi berhasil');
-        } catch (\Exception $e) {
-            // dd($e);
-            return redirect('/User/profile')->with('error', 'Edit user gagal');
+            
+            $userUpdate->update([
+                "name" => $request->name,
+                "username" => $request->username,
+                "nohp" => $request->nohp,
+                "avatar" => "storage/" . $url
+            ]);
+            $userUpdate->save();
+        }else{
+            
+            $userUpdate->update([
+                "name" => $request->name,
+                "username" => $request->username,
+                "nohp" => $request->nohp
+            ]);
+            
+            $userUpdate->save();
         }
+        // dd($userUpdate);
+        return redirect('/User/profile')->with('success', 'Registrasi berhasil');
     }
     
     /**

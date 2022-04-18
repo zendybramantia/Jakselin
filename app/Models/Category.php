@@ -22,4 +22,15 @@ class Category extends Model
         return 'id';
     }
 
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($category) {
+             $category->wisatakuliner()->each(function($wisatakuliner){
+                $wisatakuliner->delete();
+                // WisataKuliner::deleting($wisatakuliner);
+             });
+        });
+    }
+
 }

@@ -43,7 +43,7 @@
             <td>
               <a class="badge bg-warning" href="/dashboard/kuliner/{{ $kuliner->id }}"><span data-feather="eye"></span></a>
               <a class="badge bg-info" href="/dashboard/kuliner/{{ $kuliner->id }}/edit"><span data-feather="edit"></span></a>  
-              <button class="badge bg-danger border-0" onclick="return confirm('Apakah yakin ingin menghapus post?')"><span data-feather="x-circle"></span></button>
+              <button class="badge bg-danger border-0" onclick="return confirm('Apakah yakin ingin menghapus Wisata Kuliner?')"><span data-feather="x-circle"></span></button>
               {{-- <a class="badge bg-danger" href=""><span data-feather="x-circle"></span></a> --}}
             </td>
         </tr>

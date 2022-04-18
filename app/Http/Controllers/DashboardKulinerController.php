@@ -6,6 +6,8 @@ use App\Models\Category;
 use Illuminate\Support\Facades\File;
 use App\Models\WisataKuliner;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Return_;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class DashboardKulinerController extends Controller
 {
@@ -60,7 +62,7 @@ class DashboardKulinerController extends Controller
                 'deskripsi' => $request->deskripsi,
                 'gambar' => "storage/" . $url
             ]);
-            return redirect('/dashboard/kuliner/'.$wisataKuliner->id)->with('success', 'edit berhasil');
+            return redirect('/dashboard/kuliner/'.$wisataKuliner->id)->with('success', 'Registrasi '.$request->nama_tempat.' berhasil');
         } catch (\Illuminate\Validation\ValidationException $e) {
             dd($e);
             return response("form yang diisi tidak valid", 400);
@@ -177,6 +179,6 @@ class DashboardKulinerController extends Controller
         } catch (\Exception $e) {
             dd($e);
         }
-        return redirect('/dashboard/kuliner')->with('success', 'Post berhasil dihapus');  
+        return redirect('/dashboard/kuliner')->with('success', 'Wisata Kuliner ' . $wisataKuliner->nama_tempat .  ' berhasil dihapus');  
     }
 }
