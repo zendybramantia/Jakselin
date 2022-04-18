@@ -41,32 +41,21 @@
                         <button class="btn btn-warning" type="submit" id="button-addon2">Search</button>
                     </div>
                 </form>
+                
             </div>
             <h1>Hasil Pencarian "{{ request('search') }}"</h1>
-            @foreach ($wisatas as $wisata) 
-                <div class="card">
-                    <img src="{{ $wisata->gambar }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $wisata->nama_tempat }}</h5>
-                        <p class="card-text">{{ $wisata->alamat }}</p>
-                        <a href="/wisata/{{ $wisata->id }}"><button type="button" class="btn btn-warning">Lihat Detail</button></a>
+            <div class="result-container">
+                @foreach ($wisatas as $wisata) 
+                    <div class="card">
+                        <img src="{{ $wisata->gambar }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $wisata->nama_tempat }}</h5>
+                            <p class="card-text">{{ $wisata->alamat }}</p>
+                            <a href="/wisata/{{ $wisata->id }}"><button type="button" class="btn btn-warning">Lihat Detail</button></a>
+                        </div>
                     </div>
-                    {{-- <div class="mb-3 d-flex justify-content-center">
-                        <p>
-                            <small>
-                                <a class="text-decoration-none me-3" href="/kuliner/edit/{{ $wisata->id }}">Edit</a>
-                                <p>|</p> --}}
-                                {{-- <a class="text-decoration-none ms-3" href="/kuliner/hapus/{{ $wisata->id }}">Hapus</a> --}}
-                                {{-- <form action="/kuliner/hapus/{{ $wisata->id }}" method="POST" class="ms-3">
-                                    @method('PUT')
-                                    @csrf
-                                    <button class="border-0 bg-white text-primary" onclick="return confirm('Apakah yakin ingin menghapus post?')">Hapus</button>
-                                </form> --}}
-                            {{-- </small>
-                        </p>
-                    </div>   --}}
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     @else
         <div class="exception">
