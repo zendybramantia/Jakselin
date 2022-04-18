@@ -44,16 +44,18 @@
     
 <div class="search-container">
     <h1>Kategori "{{ $category }}"</h1>
-    @foreach ($wisatas as $wisata) 
-        <div class="card">
-            <img src="{{ $wisata->gambar }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{ $wisata->nama_tempat }}</h5>
-                <p class="card-text">{{ $wisata->alamat }}</p>
-                <a href="/wisata/{{ $wisata->id }}"><button type="button" class="btn btn-warning">Lihat Detail</button></a>
+    <div class="result-container">
+        @foreach ($wisatas as $wisata) 
+            <div class="card">
+                <img src="{{ $wisata->gambar }}" class="card-img-top img-thumbnail  "  alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $wisata->nama_tempat }}</h5>
+                    <p class="card-text">{{ $wisata->alamat }}</p>
+                    <a href="/wisata/{{ $wisata->id }}"><button type="button" class="btn btn-warning">Lihat Detail</button></a>
+                </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
+    </div>
 </div>
 
 <div class="footer">

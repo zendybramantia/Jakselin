@@ -6,7 +6,7 @@
         <h2 class="judul my-4">TAMBAH REKOMENDASI KULINER</h2>
     </div>
     <div>
-        <form action="/dashboard/kuliner" method="POST" enctype="multipart/form-data">
+        <form action="/dashboard/kuliner/store" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nama Tempat</label>

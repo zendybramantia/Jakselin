@@ -97,7 +97,8 @@ class DashboardKulinerController extends Controller
     {
         // return $wisataKuliner;
         return view('Dashboard.kuliner.edit', [
-            'kuliner' => $wisataKuliner
+            'kuliner' => $wisataKuliner,
+            'categories' => Category::all()
         ]);
     }
 
@@ -135,7 +136,7 @@ class DashboardKulinerController extends Controller
             if ($request->hasFile("gambar")) {
                 $url = $request->file('gambar')->store('kuliner');
 
-                File::delete($wisataKuliner->gambar);
+                // File::delete($wisataKuliner->gambar);
                 
                 
                 $kulinerUpdate->update([

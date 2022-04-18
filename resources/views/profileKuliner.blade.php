@@ -29,7 +29,6 @@
     <div class="profil-image-container">
         <img src="/{{ $profil->gambar }}" class="profil-image" alt="">
     </div>
-    <img src="storage/kuliner/asOIFOK4KWI4O6dhRB0rIZXRShLPp57jzNZMHgjH.jpg" alt="">
     <div class="profil-info-container">
         <p class="title">{{ $profil->nama_tempat }}</p>
         <h5>Kategori</h5>
@@ -45,7 +44,7 @@
         <form action="/comment/post" method="post">
             @csrf
             <input type="hidden" name="kuliner_id" value="{{ $profil->id }}">
-            <textarea type="textarea" class="form-comment" placeholder="Tambah komentar anda" name="body"></textarea>
+            <textarea type="textarea" class="form-comment" placeholder="Tambah komentar anda" name="body" required></textarea>
             <button type="submit" class="btn btn-primary mt-2">Kirim</button>
         </form>
     </div>
@@ -54,7 +53,7 @@
     <div class="profil-info-container">
         <div class="comment-container">
             <div class="comment-profile">
-                <img src="/{{ $comment->User->avatar }}" class="rounded-circle img-thumbnail" " alt="">
+                <img src="/{{ $comment->User->avatar }}" class="rounded-circle img-thumbnail"  alt="">
             </div>
             <div class="comment-content">
                 <p>{{ $comment->User->username }}</p>
