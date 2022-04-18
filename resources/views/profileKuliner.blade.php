@@ -27,7 +27,7 @@
 @section('content')    
 <div class="profil-container">
     <div class="profil-image-container">
-        <img src="/{{ $profil->gambar }}" class="profil-image" alt="">
+        <img src="/{{ $profil->gambar }}" class="profil-image" style="object-fit:cover"  alt="">
     </div>
     <div class="profil-info-container">
         <p class="title">{{ $profil->nama_tempat }}</p>

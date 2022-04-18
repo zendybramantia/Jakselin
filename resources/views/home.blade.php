@@ -50,9 +50,9 @@
         @endforeach
     </div>
 </div>
-
 <div class="footer">
   <p>Dibuat Oleh Tim Jakselin</p>
 
 </div>
+
 @endsection

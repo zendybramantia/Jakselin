@@ -27,7 +27,7 @@
           <th scope="col">Category Name</th>
           <th scope="col">Nama Wisata Kuliner</th>
           <th scope="col">Alamat</th>
-          <th scope="col">Action</th>
+          <th style="width: 110px" scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
