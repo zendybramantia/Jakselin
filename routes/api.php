@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\APILoginController;
+use App\Http\Controllers\CapacityDataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +21,23 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/token', function (Request $request) {
+        $token = $request->session()->token();
+
+        $token = csrf_token();
+        return response()->json($token, 200);
+
+        // ...
+    });
+    Route::get('/user/token', [APILoginController::class, 'getUserbyToken'])->middleware('auth:sanctum');
+    Route::post('/login/auth', [APILoginController::class, 'authenticate']);
+    Route::post('/logout', [APILoginController::class, 'logout'])->middleware('auth:sanctum');
+});
+
+
+
+Route::apiResource('user', UserController::class);
+Route::apiResource('data', CapacityDataController::class);

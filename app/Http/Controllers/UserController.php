@@ -50,11 +50,12 @@ class UserController extends Controller
 
         $validData['password'] = bcrypt($validData['password']);
 
+        // dd($validData);
         User::create($validData);
 
         return redirect('/login')->with('success', 'Registrasi berhasil');
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -65,7 +66,7 @@ class UserController extends Controller
     {
         //
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -77,7 +78,7 @@ class UserController extends Controller
         $user = Auth::user();
         return view('editUser', ['user' => $user]);
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -96,14 +97,14 @@ class UserController extends Controller
         ]);
 
         $userUpdate = User::where('id', $user->id)->first();
-        
+
         if ($request->hasFile("avatar")) {
             $url = $request->file('avatar')->store('profile');
-            
+
             if($user->avatar != 'images/profile.jpg'){
                 File::delete($user->avatar);
             }
-            
+
             $userUpdate->update([
                 "name" => $request->name,
                 "username" => $request->username,
@@ -112,19 +113,19 @@ class UserController extends Controller
             ]);
             $userUpdate->save();
         }else{
-            
+
             $userUpdate->update([
                 "name" => $request->name,
                 "username" => $request->username,
                 "nohp" => $request->nohp
             ]);
-            
+
             $userUpdate->save();
         }
         // dd($userUpdate);
         return redirect('/User/profile')->with('success', 'Registrasi berhasil');
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
