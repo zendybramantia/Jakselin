@@ -4,8 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\APIUserController;
 use App\Http\Controllers\APILoginController;
-use App\Http\Controllers\CapacityDataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +35,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/user/token', [APILoginController::class, 'getUserbyToken'])->middleware('auth:sanctum');
     Route::post('/login/auth', [APILoginController::class, 'authenticate']);
     Route::post('/logout', [APILoginController::class, 'logout'])->middleware('auth:sanctum');
+    //User
+    Route::apiResource('user', \App\Http\Controllers\APIUserController::class);
+    Route::apiResource('kuliner', \App\Http\Controllers\APIKulinerController::class);
 });
 
-
-
-Route::apiResource('user', UserController::class);
-Route::apiResource('data', CapacityDataController::class);
