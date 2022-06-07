@@ -32,7 +32,7 @@ Route::group(['middleware' => ['web']], function () {
 
         // ...
     });
-    Route::get('/login/token', [APILoginController::class, 'getUserbyToken'])->middleware('auth:sanctum');
+    Route::get('/user/token', [APILoginController::class, 'getUserbyToken'])->middleware('auth:sanctum');
     Route::post('/login/auth', [APILoginController::class, 'authenticate']);
     Route::post('/logout', [APILoginController::class, 'logout'])->middleware('auth:sanctum');
     //User
