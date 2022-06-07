@@ -16,7 +16,7 @@ class WisataKuliner extends Model
         'category_id',
         'alamat',
         'deskripsi',
-        'gambar'
+        'gambar',
     ];
 
     public function scopeFilter($query, array $filters) {

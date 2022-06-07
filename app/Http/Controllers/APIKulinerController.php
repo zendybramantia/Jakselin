@@ -17,10 +17,11 @@ class APIKulinerController extends Controller
      */
     public function index()
     {
-        $data = [
-            "wisatas" => WisataKuliner::latest()->filter(request(['search']))->get()
-        ];
-        return response($data, 200);
+        $data = WisataKuliner::latest()->filter(request(['search']))->get();
+        return response()->json([
+            "message" => "Success",
+            "wisatas" => $data
+        ]);
     }
 
     /**
