@@ -91,44 +91,29 @@ class APIUserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $user = Auth::user();
         $this->validate($request, [
             'name' => "required",
             'username' => "required",
             'nohp' => "required",
-            'avatar' => "mimes:jpeg,jpg,png"
+            // 'avatar' => "mimes:jpeg,jpg,png"
         ]);
 
-        $userUpdate = User::where('id', $user->id)->first();
+        $userUpdate = User::where('id', $id)->first();
 
-        if ($request->hasFile("avatar")) {
-            $url = $request->file('avatar')->store('profile');
+        $userUpdate->update([
+            "email" => $request->email,
+            "name" => $request->name,
+            "username" => $request->username,
+            "nohp" => $request->nohp
+        ]);
 
-            if($user->avatar != 'images/profile.jpg'){
-                File::delete($user->avatar);
-            }
+        $userUpdate->save();
 
-            $userUpdate->update([
-                "name" => $request->name,
-                "username" => $request->username,
-                "nohp" => $request->nohp,
-                "avatar" => "storage/" . $url
-            ]);
-            $userUpdate->save();
-        }else{
-
-            $userUpdate->update([
-                "name" => $request->name,
-                "username" => $request->username,
-                "nohp" => $request->nohp
-            ]);
-
-            $userUpdate->save();
-        }
-        // dd($userUpdate);
-        return redirect('/User/profile')->with('success', 'Registrasi berhasil');
+        return response()->json([
+            'message' => 'Success'
+        ]);
     }
 
     /**

@@ -39,9 +39,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/login/auth', [APILoginController::class, 'authenticate']);
     Route::post('/logout', [APILoginController::class, 'logout'])->middleware('auth:sanctum');
     //User
+<<<<<<< HEAD
     Route::apiResource('user', \App\Http\Controllers\APIUserController::class);
 
     //Kuliner
+=======
+    Route::apiResource('user', APIUserController::class);
+    Route::post('/user/update/{id}', [APIUserController::class, 'update']);
+>>>>>>> 530e098f5e791edd6e322e392fcc052391a937fc
     Route::apiResource('kuliner', \App\Http\Controllers\APIKulinerController::class);
     Route::get('/category/{category}', [APICategoryController::class, 'index']);
 
