@@ -43,8 +43,7 @@ Route::group(['middleware' => ['web']], function () {
 
     //Kuliner
     Route::apiResource('kuliner', \App\Http\Controllers\APIKulinerController::class);
-    // Route::get('/{category:id}',[APICategoryController::class, 'index']);
     Route::get('/category/{category}', [APICategoryController::class, 'index']);
-    
+
 });
 
