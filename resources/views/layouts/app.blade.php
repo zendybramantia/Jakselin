@@ -35,6 +35,7 @@
                 <a class="navbar-brand" href="/User/profile">{{ auth()->user()->name }}</a>
                 <a href="/User/profile">
                     <img style="height: 36px;width: 36px; object-fit: cover;" class="rounded-circle" src="/{{ auth()->user()->avatar }}" alt="">
+
                 </a>
               @endif
             @else
