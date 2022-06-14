@@ -18,13 +18,14 @@ class LoginController extends Controller
             'email' => 'required|email:dns',
             'password' => 'required',
         ]);
- 
+
         if (Auth::attempt($credentials)) {
+            dd(auth()->user()->is_admin);
             $request->session()->regenerate();
- 
+
             return redirect()->intended('/');
         }
- 
+
         return back()->with('loginError', 'Login Failed');
     }
 
