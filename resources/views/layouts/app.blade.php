@@ -25,11 +25,11 @@
           </a>
           <div class="d-flex justify-content-end" style="width: 16%;">
             @auth
-              @if (app()->view->getSections()['title'] === "Home" || app()->view->getSections()['title'] === "Category") 
-              @can('admin')
+              @if (app()->view->getSections()['title'] === "Home" || app()->view->getSections()['title'] === "Category")
+              @can('admin', \App\Http\Middleware\isAdmin::class)
                 <a class="navbar-brand btn btn-warning" href="/dashboard/home"><small>ADMINISTRATOR</small></a>
               @endcan
-                  
+
               <a class="navbar-brand" href="/User/profile">{{ auth()->user()->name }}</a>
               <a href="/User/profile">
                   <img style="height: 36px;width: 36px; object-fit: cover;" class="rounded-circle" src="/{{ auth()->user()->avatar }}" alt="">
