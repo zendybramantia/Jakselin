@@ -22,6 +22,7 @@ class isAdmin
             return redirect('/home');
         } else {
             // return true;
+            dd("masuk");
             return $next($request);
         }
         throw "Ga ngebaca admin";

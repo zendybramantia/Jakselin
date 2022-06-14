@@ -68,17 +68,17 @@ Route::post('/comment/post', [CommentController::class, 'store'])->middleware('a
 
 Route::resource('/dashboard/categories', DashboardCategoryController::class)->middleware('auth')->middleware('admin');
 Route::resource('/dashboard/users', DashboardUserController::class)->middleware('auth')->middleware('admin');
-Route::get('/dashboard/kuliner/create', [DashboardKulinerController::class, 'create'])->middleware('auth')->middleware('admin');
+// Route::get('/dashboard/kuliner/create', [DashboardKulinerController::class, 'create'])->middleware('auth')->middleware('admin');
 Route::post('/dashboard/kuliner/store', [DashboardKulinerController::class, 'store'])->middleware('auth')->middleware('admin');
 Route::get('/dashboard/kuliner/{wisataKuliner}', [DashboardKulinerController::class, 'show'])->middleware('auth')->middleware('admin');
 Route::get('/dashboard/kuliner/{wisataKuliner}/edit', [DashboardKulinerController::class, 'edit'])->middleware('auth')->middleware('admin');
 Route::put('/dashboard/kuliner/{wisataKuliner}', [DashboardKulinerController::class, 'update'])->middleware('auth')->middleware('admin');
 Route::put('/dashboard/kuliner/{wisataKuliner}/destroy', [DashboardKulinerController::class, 'destroy'])->middleware('auth')->middleware('admin');
-Route::get('/dashboard/kuliner/create', function(){
-    return view('Dashboard.kuliner.create', [
-        'categories' => Category::all()
-    ]);
-})->middleware('auth')->middleware('admin');
+// Route::get('/dashboard/kuliner/create', function(){
+//     return view('Dashboard.kuliner.create', [
+//         'categories' => Category::all()
+//     ]);
+// })->middleware('auth')->middleware('admin');
 Route::resource('/dashboard/kuliner', DashboardKulinerController::class)->middleware('auth')->middleware('admin');
 Route::get('/dashboard/home', function(){
     $user = Auth::user();
