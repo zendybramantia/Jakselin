@@ -21,8 +21,8 @@ class User extends Authenticatable
     ];
 
     protected $hidden =[
-        'password',
-        'is_admin'
+        'password'
+        // 'is_admin'
     ];
 
     public function comment()
