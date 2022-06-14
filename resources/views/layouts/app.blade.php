@@ -28,7 +28,7 @@
               @if (app()->view->getSections()['title'] === "Home" || app()->view->getSections()['title'] === "Category")
                 @can('admin')
                     <a class="navbar-brand btn btn-warning" href="/dashboard/home"><small>ADMINISTRATOR</small></a>
-                    @endcan
+                @endcan
                 {{-- @if (auth()->user()->is_admin === true)
                     <a class="navbar-brand btn btn-warning" href="/dashboard/home"><small>ADMINISTRATOR</small></a>
                 @endif --}}
