@@ -16,10 +16,14 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+        // dd($request);
         if( !auth()->check() || auth()->user()->is_admin !== 1){
             // abort(403);
             return redirect('/home');
+        } else {
+            // return true;
+            return $next($request);
         }
-        return $next($request);
+        throw "Ga ngebaca admin";
     }
 }

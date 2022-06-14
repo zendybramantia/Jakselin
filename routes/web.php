@@ -85,7 +85,7 @@ Route::get('/dashboard/home', function(){
     return view('Dashboard.home', [
         'user'=>$user
     ]);
-})->middleware('auth')->middleware('admin', \App\Http\Middleware\isAdmin::class);
+})->middleware('auth')->middleware('admin');
 
 
 
