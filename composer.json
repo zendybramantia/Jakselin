@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
@@ -12,6 +15,10 @@
         "laravel/tinker": "^2.7",
         "fakerphp/faker": "^1.9.1"
     },
+    "post-install-cmd": [
+        "php artisan clear-compiled",
+        "chmod -R 777 public/"
+    ],
     "require-dev": {
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
