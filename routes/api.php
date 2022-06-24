@@ -9,6 +9,7 @@ use App\Http\Controllers\APILoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\APIKulinerController;
 use App\Http\Controllers\APICategoryController;
+use App\Http\Controllers\APICommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/user/update/{id}', [APIUserController::class, 'update']);
     Route::apiResource('kuliner', \App\Http\Controllers\APIKulinerController::class);
     Route::get('/category/{category}', [APICategoryController::class, 'index']);
-
+    Route::get('/wisata/{wisataKuliner}', [APIKulinerController::class, 'show']);
+    Route::post('/comment/post/{userid}/{kulinerid}', [APICommentController::class, 'store']);
 });
 
