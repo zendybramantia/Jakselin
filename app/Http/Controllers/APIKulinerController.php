@@ -83,7 +83,7 @@ class APIKulinerController extends Controller
         // $comments = Comment::all();
         $comments = Comment::where('kuliner_id', $wisataKuliner->id)->get();
 
-        return view('profileKuliner', [
+        return response()->json([
             "profil" => $wisataKuliner,
             "comments" => $comments
         ]);

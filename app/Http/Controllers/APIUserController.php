@@ -57,7 +57,7 @@ class APIUserController extends Controller
 
             return response("Register User Berhasil", 200);
         } catch (\Exception $e) {
-            return response("Gagal Melakukan Register", 400);
+            return response($e, 400);
         }
     }
 

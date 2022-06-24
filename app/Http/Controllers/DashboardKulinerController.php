@@ -52,6 +52,7 @@ class DashboardKulinerController extends Controller
                 'deskripsi' => 'required|max:2056',
                 'gambar' => "required|mimes:jpeg,jpg,png"
             ]);
+            // dd($request->file('gambar')->store('kuliner'));
 
             $url = $request->file('gambar')->store('kuliner');
 
@@ -132,13 +133,13 @@ class DashboardKulinerController extends Controller
             ]);
 
             $kulinerUpdate = WisataKuliner::where('id', $wisataKuliner->id);
-            
+
             if ($request->hasFile("gambar")) {
                 $url = $request->file('gambar')->store('kuliner');
 
                 // File::delete($wisataKuliner->gambar);
-                
-                
+
+
                 $kulinerUpdate->update([
                     'category_id' => $request->category_id,
                     'nama_tempat' => $request->nama_tempat,
@@ -146,16 +147,16 @@ class DashboardKulinerController extends Controller
                     'deskripsi' => $request->deskripsi,
                     'gambar' => "storage/" . $url
                 ]);
-                
+
             }else{
-                
+
                 $kulinerUpdate->update([
                     'category_id' => $request->category_id,
                     'nama_tempat' => $request->nama_tempat,
                     'alamat' => $request->alamat,
                     'deskripsi' => $request->deskripsi,
                 ]);
-                
+
             }
             // dd($kulinerUpdate);
             // dd($wisataKuliner);
@@ -179,6 +180,6 @@ class DashboardKulinerController extends Controller
         } catch (\Exception $e) {
             dd($e);
         }
-        return redirect('/dashboard/kuliner')->with('success', 'Wisata Kuliner ' . $wisataKuliner->nama_tempat .  ' berhasil dihapus');  
+        return redirect('/dashboard/kuliner')->with('success', 'Wisata Kuliner ' . $wisataKuliner->nama_tempat .  ' berhasil dihapus');
     }
 }
