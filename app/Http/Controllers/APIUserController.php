@@ -69,7 +69,11 @@ class APIUserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $userbyid = User::where('id', $user->id)->get();
+
+        return response()->json([
+            "user" => $userbyid
+        ]);
     }
 
     /**
